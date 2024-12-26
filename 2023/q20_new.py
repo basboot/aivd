@@ -11,7 +11,7 @@ puzzle = {
     YELLOW : [(1, 2), (2, 9), (9, 9), (9, 16), (14,15), (15, 15), (15, 7), (7, 8), (7, 9), (8, 9), (15, 19), (19, 15), (15, 22)],
     GREEN : [(3, 9), (9, 4), (9, 14), (14, 19), (23, 19), (19, 9)],
     ORANGE : [(3, 22), (22, 9), (9, 9), (9, 17), (15, 14), (14, 11), (11, 15)],
-    LIGHT_BLUE : [(4, 14), (14, 10), (10, 6), (6, 18), (18, 19), (5, 15), (15, 5), (13, 16), (20, 13), (16, 4), (25, 14), (14, 15)],
+    LIGHT_BLUE : [(4, 14), (14, 10), (10, 6), (6, 18), (18, 19), (5, 15), (15, 5), (13, 16), (20, 13), (16, 4), (25, 14)],
     DARK_BLUE : [(21, 10), (10, 19), (21, 15), (15, 19), (16, 15), (15, 8), (8, 15)],
     PINK : [(6, 9), (9, 9), (9, 22), (22, 23), (23, 19), (21, 15), (15, 22)],
     RED : [(14, 10), (10, 6), (6, 11), (11, 12), (12, 15), (15, 10), (10, 21), (16, 13), (13, 15)]
@@ -48,33 +48,11 @@ for network in puzzle:
     # nx.draw(G[network])
     # plt.show()
 
-    if network == BLACK:
-        continue
-
     for node in G[network].nodes:
         if len(list(G[network].predecessors(node))) == 0:
             # print(f"found start at {node}, color {network}")
             starts[network].append(node)
 
-
-fig, axes = plt.subplots(nrows=2, ncols=4)
-ax = axes.flatten()
-
-
-
-c = 0
-for network in puzzle:
-
-
-    nx.draw_networkx(G[network], pos=nx.planar_layout(G[network]), ax=ax[c])
-    ax[c].set_axis_off()
-
-    c += 1
-
-
-plt.show()
-
-exit()
 print(starts)
 
 # create tries
@@ -94,8 +72,8 @@ for filename in [
                 "./wordlists/OpenTaal-210G-basis-gekeurd.txt",
                  "./wordlists/OpenTaal-210G-basis-ongekeurd.txt",
                  "./wordlists/OpenTaal-210G-flexievormen.txt",
-                 #"./wordlists/english.txt",
-                 # "./wordlists/test.txt",
+                #  "./wordlists/english.txt",
+                #  "./wordlists/test.txt",
                  ]:
     file1 = open(filename, "r")
     Lines = file1.readlines()
@@ -109,8 +87,8 @@ for filename in [
         if len(word) == 1: # ignore single letters
             continue
 
-        if not has_only_letters(word):
-            continue
+        # if not has_only_letters(word):
+        #     continue
 
         wordlist.insert(word)
         n_words += 1
@@ -152,6 +130,7 @@ def get_options(G, node, char_map, trie_node):
                 options.append((char_map, wordlist.root.children[char_map["mapping"][node]]))
     else:
         # if not already mapped: try all mappings, and try word end if possible
+
         for c in trie_node.children:
             c, char_map_copy, mapping_possible = map_char(node, char_map, c)
             if not mapping_possible:
@@ -172,60 +151,69 @@ def get_options(G, node, char_map, trie_node):
     return options # [(char_map, next_node)]
 
 
+def create_all_next_options(strings, options):
+    if len(strings) == 0:
+        return options
 
+    # explore first in list
+    G, stringnode, trienode = strings[0]
+
+    next_options = []
+
+    # try to extend all current options (option will only survive if we can extend it)
+    for prev_strings, mapping in options:
+
+        # check all possible mappings
+        for next_mapping, next_trienode in get_options(G, stringnode, mapping, trienode):
+            # TODO: this will fail if any string can end in a loop!
+
+            # if the string ends and this is a word end, we have a solution and do not have to explore any further
+            if len(G[stringnode]) == 0 and next_trienode.is_end:
+                next_options.append((prev_strings, next_mapping))
+            else:
+                # # always allow option to end?
+                # if next_trienode.is_end:
+                #     next_options.append((prev_strings, next_mapping))
+
+                # else explore other paths # avoid endless loops, not needed will be solved by trie
+                for next_stringnode in G[stringnode]:
+                    next_options.append((prev_strings + [(G, next_stringnode, next_trienode)], next_mapping))
+
+
+
+    return create_all_next_options(strings[1:], next_options)
 def dfs(strings, mappings):
+
+    visited = set()
 
     stack = deque()
 
     stack.append((strings, mappings))
 
-    visited = set()
-
     count = 0
     while len(stack) > 0:
         strings, mappings = stack.pop()
 
-        id = (tuple([int(x) for _, x, _, _ in strings]), tuple([(map, mappings["mapping"][map]) for map in mappings["mapping"]]))
+        id = (tuple([int(x) for _, x, _ in strings]), tuple([(node, mappings["mapping"][node]) for node in mappings["mapping"]]))
 
         if id in visited:
             continue
+        else:
+            visited.add(id)
 
-        visited.add(id)
         count += 1
-        if count % 1000000 == 0:
+        if count % 100000 == 0:
             print("-----------", count)
-            print([int(x) for _, x, _, _ in strings])
+            print([int(x) for _, x, _ in strings])
             print(mappings["mapping"])
 
-        if len(strings) == 0: # > after last minute, stop
+        if len(strings) == 0: # > all strings have ended
             print("FOUND")
             return mappings
 
-        # explore first in list
-        G, stringnode, trienode, visited_stringnodes = strings[0]
-        # print(G, stringnode, trienode)
-
         # check all possible mappings
-        options = get_options(G, stringnode, mappings, trienode)
-        for next_mapping, next_trienode in options:
-            # TODO: this will fail if any string can end in a loop!
-
-            # if the string ends and this is a word end, we have a solution and do not have to explore any further
-            if len(G[stringnode]) == 0 and next_trienode.is_end:
-                stack.append((strings[1:], next_mapping))
-            else:
-                # TODO: solves end loops, but need to look how to avoid breaking too early
-                if next_trienode.is_end and stringnode in visited_stringnodes: # always allow to end on a word if we have seen it before
-                    stack.append((strings[1:], next_mapping))
-
-                # else explore other paths # avoid endless loops, not needed will be solved by trie
-                for next_stringnode in G[stringnode]:
-                    next_visited_stringnodes = visited_stringnodes.copy()
-                    next_visited_stringnodes.add(stringnode)
-                    next_strings = [(G, next_stringnode, next_trienode, next_visited_stringnodes)] + strings[1:]
-                    stack.append((next_strings, next_mapping))
-
-            # stack.append()
+        for next_strings, next_mappings in create_all_next_options(strings, [([], mappings)]):
+            stack.append((next_strings, next_mappings))
 
 
 wordlist.root.is_end = False # avoid empty words
@@ -235,9 +223,11 @@ wordlist.root.is_end = False # avoid empty words
 strings = []
 for color in starts:
     for start_node in starts[color]:
-        strings.append((G[color], start_node, wordlist.root, set()))
+        strings.append((G[color], start_node, wordlist.root))
+    if color == GREEN:
+        break
 
-print(dfs(strings, {"used": set('e'), "mapping": {15: 'e'}}))
+print(dfs(strings, {"used": set(), "mapping": {}}))
 
 
 #

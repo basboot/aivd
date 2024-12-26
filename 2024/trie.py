@@ -42,7 +42,7 @@ class Trie(object):
         # Loop through each character in the word
         # Check if there is no child containing the character, create a new child for the current node
         for char in word:
-            char = char.lower() # only lowercase
+            char = char.upper() # only upper
             if char in node.children:
                 node = node.children[char]
             else:
@@ -72,6 +72,7 @@ class Trie(object):
         for child in node.children.grid():
             self.dfs(child, prefix + node.char)
 
+
     def query(self, x):
         """Given an input (a prefix), retrieve all words stored in
         the trie with that prefix, sort the words by the number of
@@ -95,3 +96,4 @@ class Trie(object):
 
         # Sort the results in reverse order and return
         return sorted(self.output, key=lambda x: x[1], reverse=True)
+
