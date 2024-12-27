@@ -1,8 +1,11 @@
 # Note that we switched from 1 indexing to 0 indexing!!!
-from collections import defaultdict
+import time
+from collections import defaultdict, Counter
 
 import trie
 from unidecode import unidecode
+
+letters = list('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
 wordlist = trie.Trie()
 n_words = 0
@@ -24,16 +27,25 @@ for filename in [
         # to upper, no diacritics
         word = unidecode(line.strip().upper())
 
+        if len(word) < 2:
+            continue
+
+        # if word.isnumeric():
+        #     continue
+
         wordlist.insert(word)
         n_words += 1
 
-# add numbers up to 100 (because of double meaning of letters this also adds spaces and other punctuation
-for i in range(100):
+# add numbers up to 10 (because of double meaning of letters this also adds spaces and other punctuation
+for i in range(10):
     wordlist.insert(str(i))
 
-# add 100's
-for i in range(10):
-    wordlist.insert(str(i * 100 + 100))
+# # add 100's
+# for i in range(10):
+#     wordlist.insert(str(i * 100 + 100))
+
+# for c in letters:
+#     wordlist.insert(c)
 
 print(f"{n_words} in trie")
 
@@ -352,10 +364,27 @@ cypher_d = "7RBNG4ACEK83YHUZLODARRHEZ3WT8URC4EC3XAQR448CW7NZK434K977B36D7ZEZRBU6
 # Checked: all configs give same solution :-)
 for reflector, rotors in solutions_c:
     enigmini = Enigma(sleutelvierkant, (0, 1, 2, 3, 4, 5), rotors, reflector, (0, 0))
+
+    # rc_lookup = {'7': (0, 0), '0': (3, 3), 'R': (0, 1), '1': (1, 2), 'B': (0, 2), '2': (2, 5), 'N': (0, 3), '3': (1, 5),
+    #          'G': (0, 4), '4': (3, 0), 'A': (0, 5), '5': (4, 2), 'C': (1, 0), '6': (3, 2), 'E': (1, 1), 'K': (1, 3),
+    #          '8': (4, 0), 'Y': (1, 4), 'H': (2, 0), '9': (5, 4), 'U': (2, 1), 'Z': (2, 2), 'D': (3, 5), 'L': (2, 3),
+    #          'O': (2, 4), 'F': (5, 2), 'W': (4, 1), 'T': (5, 3), 'M': (4, 4), 'X': (5, 0), 'Q': (5, 1), 'I': (4, 3),
+    #          'P': (5, 5), 'S': (4, 5), 'V': (3, 1), 'J': (3, 4)}
+    # c_lookup = {(0, 0): '7', (3, 3): '0', (0, 1): 'R', (1, 2): '1', (0, 2): 'B', (2, 5): '2', (0, 3): 'N', (1, 5): '3',
+    #            (0, 4): 'G', (3, 0): '4', (0, 5): 'A', (4, 2): '5', (1, 0): 'C', (3, 2): '6', (1, 1): 'E', (1, 3): 'K',
+    #            (4, 0): '8', (1, 4): 'Y', (2, 0): 'H', (5, 4): '9', (2, 1): 'U', (2, 2): 'Z', (3, 5): 'D', (2, 3): 'L',
+    #            (2, 4): 'O', (5, 2): 'F', (4, 1): 'W', (5, 3): 'T', (4, 4): 'M', (5, 0): 'X', (5, 1): 'Q', (4, 3): 'I',
+    #            (5, 5): 'P', (4, 5): 'S', (3, 1): 'V', (3, 4): 'J'}
+    #
+
+    # enigmini.row_column_lookup = rc_lookup
+    # enigmini.character_lookup = c_lookup
     # message = enigmini.encode(cypher_d, True)
     # print(message)
     break # only need one
 
+
+enigmini_test = Enigma(sleutelvierkant, (0, 1, 2, 3, 4, 5), solutions_c[0][1], solutions_c[0][0], (0, 0))
 
 def show_message(m):
     print(m[0:70])
@@ -364,7 +393,6 @@ def show_message(m):
 
 show_message(cypher_d)
 
-letters = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
 
 # kunnen simulate gebruiken
 # eerst zonder wordtrie proberen
@@ -409,10 +437,14 @@ class Solution:
         for c in letters:
             if c in self.used:
                 continue # cannot use same letter twice
-            if not self.is_legal_in_this_row(c, row):
-                continue
-            if not self.is_legal_in_this_column(c, col):
-                continue
+
+            # TODO: if think this is not possible (and only happens because of errors)
+
+            # if not self.is_legal_in_this_row(c, row):
+            #     continue
+            # if not self.is_legal_in_this_column(c, col):
+            #     continue
+
             yield c
 
     def use(self, c, row, column):
@@ -449,7 +481,43 @@ class Solution:
         return f"Used {self.used}\nIllegal rows: {self.illegal_rows}\nIllegal columns: {self.illegal_columns}\nRow/col lookup: {self.char_to_row_column_lookup}\nChar lookup:  = {self.row_column_to_character_lookup}"
 
 
-def try_to_match_m(enigmini: Enigma, position, cypher, solution: Solution):
+def try_m(enigmini: Enigma, position, cypher, solution: Solution, tree_node, tree_root, m, length_last_word, result):
+    # # continue word
+    # if m in tree_node.children:
+    #     crack_sleutelvierkant(enigmini, position + 1, cypher, solution, tree_node.children[m], tree_root, length_last_word + 1, result)
+    #
+    # # TODO: one letter allowed is disabled
+    # # start new word
+    # if (tree_node.is_end and length_last_word > 1) or m == "0": # TODO: beter nadenken over spaties,
+    #     crack_sleutelvierkant(enigmini, position + 1, cypher, solution, tree_root.children[m], tree_root, 0, result)
+    #
+    # if m.isnumeric() and position == 0:
+    #     return # forbid non alfa at pos 0
+    #
+    # next_result = result.copy()
+    #
+    # if m.isnumeric():
+    #     next_result["num"] += 1
+    # else:
+    #     next_result["alf"] += 1
+    #
+    # if position > 1 and next_result["num"] / next_result["alf"] >= 0.5:
+    #     return
+    #
+    # # TODO: find better way to invalidate solutions!
+
+    next_result = result
+
+    fixed_letters = "IN0DE" #986543210 (5 = ")
+
+    if position < len(fixed_letters):
+        if m != fixed_letters[position]:
+            return
+    crack_sleutelvierkant(enigmini, position + 1, cypher, solution, tree_node, tree_root,
+                          0, next_result)
+
+
+def find_all_m(enigmini: Enigma, position, cypher, solution: Solution, tree_node, tree_root, length_last_word, result):
     c = cypher[position]
     row_c, col_c = solution.char_to_row_column_lookup[c]
     row_m, col_m = enigmini.simulate_enigma(row_c), enigmini.simulate_enigma(col_c)
@@ -457,7 +525,7 @@ def try_to_match_m(enigmini: Enigma, position, cypher, solution: Solution):
     if (row_m, col_m) in solution.row_column_to_character_lookup:
         m = solution.row_column_to_character_lookup[(row_m, col_m)]
         # nothing changed to solution
-        crack_sleutelvierkant(enigmini, position + 1, cypher, solution)
+        try_m(enigmini, position, cypher, solution, tree_node, tree_root, m, length_last_word, result)
     else:
         for m in solution.all_legal_chars(row_m, col_m):
             # add to solution
@@ -465,7 +533,7 @@ def try_to_match_m(enigmini: Enigma, position, cypher, solution: Solution):
             changed_c = solution.invalidate_row_column(c, row_m, col_m)
             changed_m = solution.invalidate_row_column(m, row_c, col_c)
 
-            crack_sleutelvierkant(enigmini, position + 1, cypher, solution)
+            try_m(enigmini, position, cypher, solution, tree_node, tree_root, m, length_last_word, result)
 
             # cleanup changes
             solution.un_invalidate_row_column(m, row_c, col_c, changed_m)
@@ -477,39 +545,66 @@ def try_to_match_m(enigmini: Enigma, position, cypher, solution: Solution):
 
     return False
 
+max_depth = 0
 
-def crack_sleutelvierkant(enigmini, position, cypher, solution: Solution):
+def crack_sleutelvierkant(enigmini, position, cypher, solution: Solution, tree_node, tree_root, length_last_word, result):
+    global max_depth
+    # if position > max_depth:
+    #     max_depth = position
+    #     enigmini_test.clicks = 0
+    #     for i in range(position):
+    #         r, c = solution.char_to_row_column_lookup[cypher[i]]
+    #         r, c = enigmini_test.simulate_enigma(r), enigmini_test.simulate_enigma(c)
+    #         print(solution.row_column_to_character_lookup[(r, c)], end="")
+    #     print()
+
+
     if position == len(cypher):
         # full cypher in sleutelvierkant
         print(solution)
+        enigmini_test.clicks = 0
+        for i in range(position):
+            r, c = solution.char_to_row_column_lookup[cypher[i]]
+            r, c = enigmini_test.simulate_enigma(r), enigmini_test.simulate_enigma(c)
+            print(solution.row_column_to_character_lookup[(r, c)], end="")
+        print()
+        print(time.time())
         return # find next?
+
 
     c = cypher[position]
 
     if solution.is_used(c):
         # no change needed check m
-        try_to_match_m(enigmini, position, cypher, solution)
+        find_all_m(enigmini, position, cypher, solution, tree_node, tree_root, length_last_word, result)
     else:
         for row, col in solution.all_legal_row_columns(c):
             solution.use(c, row, col)
             # check m
-            try_to_match_m(enigmini, position, cypher, solution)
+            find_all_m(enigmini, position, cypher, solution, tree_node, tree_root, length_last_word, result)
             # remove
             solution.un_use(c, row, col)
 
 
 
 
-
+# TODO: meet diepte van resultaat
+# TODO: sta onbekende woorden toe
 
 s = Solution()
 
-# crack_sleutelvierkant(enigmini, 0, cypher_d, s)
+print(time.time())
+crack_sleutelvierkant(enigmini, 0, cypher_d, s, wordlist.root, wordlist.root, 0, {"num": 0, "alf": 0})
+
+
+# print("".join(sorted(list(set(list(cypher_d))))))
+
 
 enigmini.row_column_lookup = {'7': (0, 0), 'A': (3, 3), 'R': (0, 1), 'B': (1, 2), 'C': (3, 5), 'N': (0, 2), 'D': (1, 0), 'G': (0, 3), 'E': (3, 1), '4': (0, 4), 'F': (4, 3), 'H': (2, 1), 'I': (1, 3), 'J': (5, 5), 'K': (0, 5), '8': (1, 1), '3': (1, 4), 'L': (3, 0), 'Y': (1, 5), 'M': (5, 3), 'U': (2, 0), 'Z': (2, 2), 'O': (2, 3), 'P': (4, 0), 'Q': (5, 4), 'W': (2, 4), 'S': (4, 2), 'T': (2, 5), 'V': (5, 1), 'X': (3, 2), '9': (3, 4), '2': (5, 2), '6': (4, 1), '5': (4, 4), '1': (4, 5), '0': (5, 0)}
 enigmini.character_lookup = {(0, 0): '7', (3, 3): 'A', (0, 1): 'R', (1, 2): 'B', (3, 5): 'C', (0, 2): 'N', (1, 0): 'D', (0, 3): 'G', (3, 1): 'E', (0, 4): '4', (4, 3): 'F', (2, 1): 'H', (1, 3): 'I', (5, 5): 'J', (0, 5): 'K', (1, 1): '8', (1, 4): '3', (3, 0): 'L', (1, 5): 'Y', (5, 3): 'M', (2, 0): 'U', (2, 2): 'Z', (2, 3): 'O', (4, 0): 'P', (5, 4): 'Q', (2, 4): 'W', (4, 2): 'S', (2, 5): 'T', (5, 1): 'V', (3, 2): 'X', (3, 4): '9', (5, 2): '2', (4, 1): '6', (4, 4): '5', (4, 5): '1', (5, 0): '0'}
 
-print(enigmini.encode(cypher_d))
+message_d = enigmini.encode(cypher_d)
+
 
 # Used {'D', '7', 'I', 'O', 'V', 'U', '0', 'G', '5', 'Z', '3', '2', 'Y', 'B', '8', 'S', 'C', 'Q', '1', 'T', 'F', 'P', 'X', 'L', 'N', '9', '4', 'E', 'J', 'K', 'A', '6', 'R', 'M', 'W', 'H'}
 # Illegal rows: defaultdict(<class 'set'>, {3: {'7', 'B', 'I', '0', 'G', 'Q', 'H', 'J', '3'}, 0: {'D', 'B', 'F', 'A', 'E', '1'}, 1: {'L', 'R', 'C', 'N'}, 4: {'7', 'O', 'H', '4', 'W'}, 2: {'P', 'A', 'V', 'M', 'S', '5', '2'}, 5: {'T', 'A', 'O', 'H', '9', 'E'}})
@@ -547,7 +642,11 @@ print(enigmini.encode(cypher_d))
 
 
 
-
+# TODO:
+# werkt een oplossing van d voor alle c's hetzelfde? ja
+# zijn restrictie r/c redundant?
+# kloppen de restricties voor een oplossing?
+# maak function om sleutelvierkant te maken van lookup
 
 
 
