@@ -471,7 +471,7 @@ for startpos in range(len(message)):
 
 
 # 14B IK(0| )KEN(0| )GEEN(0| )ANDERE(0| )LANDEN(8|,)(0| )ZELFS(0| )AL(0| )BEN(0| )IK(0| )ER(0| )GEWEEST(3|.) (3, 2, 1, 0, 5, 4)
-
+# Liefs uit Londen
 # 14C ALS(0| )ER(0| )EEN(0| )WEDSTRIJD(0| )ZOU(0| )ZIJN(0| )VOOR(0| )FRUIT(3|.)(0| )EN(0| )ZE(0| )DEELDEN(0| )MEDAILLES(0| )UIT(3|.)
-
+# Banaan
 

@@ -5,17 +5,20 @@ from collections import defaultdict, Counter
 import trie
 from unidecode import unidecode
 
-letters = list('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-
 wordlist = trie.Trie()
 n_words = 0
 
+blacklist = {"06", "1E", "3D", "AB", "ABC", "ABCES", "ABCOUDE", "ABCS"}
+
 for filename in [
+    "./scribd/filtered-woorden2000.txt",
+    "./scribd/filtered-woorden5000.txt",
+    "./scribd/filtered-gpt_niet_zo_goed.txt",
     # "./wordlists/OpenTaal-210G-basis-gekeurd.txt",
     # "./wordlists/OpenTaal-210G-basis-ongekeurd.txt",
     # "./wordlists/OpenTaal-210G-flexievormen.txt",
     # "./wordlists/english.txt",
-    "./wordlists/test.txt",
+    # "./wordlists/test.txt",
 ]:
     file1 = open(filename, "r")
     Lines = file1.readlines()
@@ -27,25 +30,35 @@ for filename in [
         # to upper, no diacritics
         word = unidecode(line.strip().upper())
 
+        # skip single letter words
         if len(word) < 2:
             continue
 
-        # if word.isnumeric():
-        #     continue
+        if word in blacklist:
+            continue
+
+        if not word.isalpha(): # 100-tal 1E etc.
+            continue
 
         wordlist.insert(word)
         n_words += 1
 
-# add numbers up to 10 (because of double meaning of letters this also adds spaces and other punctuation
-for i in range(10):
-    wordlist.insert(str(i))
+# add combinations
+numbers = [
+    "0", #spatie
+    # "10", # !
+    # "20", # ?
+    "30", # .
+    # "4", #'
+    # "5", #"
+    # "60", #:
+    #7 _
+    "80", #,
+    # "90", #;
+]
 
-# # add 100's
-# for i in range(10):
-#     wordlist.insert(str(i * 100 + 100))
-
-# for c in letters:
-#     wordlist.insert(c)
+for n in numbers:
+    wordlist.insert(n)
 
 print(f"{n_words} in trie")
 
@@ -96,6 +109,7 @@ sleutelvierkant = [
     ["F", "K", "U", "(0| )", "Y", "Q"],
     ["(9|;)", "(7|_)", "B", "(4|')", "M", "V"]
 ]
+
 
 legal_chars = ["O", "N", "(1|!)", "C", "S", "X", "I", "G", "L", "(3|.)", "H", "T", "(5|\")", "Z", "R", "A", "(8|,)", "D", "P", "(6|:)", "W", "E", "(2|?)", "J", "F", "K", "U", "(0| )", "Y", "Q", "(9|;)", "(7|_)", "B", "(4|')", "M", "V"]
 
@@ -375,14 +389,19 @@ for reflector, rotors in solutions_c:
     #            (4, 0): '8', (1, 4): 'Y', (2, 0): 'H', (5, 4): '9', (2, 1): 'U', (2, 2): 'Z', (3, 5): 'D', (2, 3): 'L',
     #            (2, 4): 'O', (5, 2): 'F', (4, 1): 'W', (5, 3): 'T', (4, 4): 'M', (5, 0): 'X', (5, 1): 'Q', (4, 3): 'I',
     #            (5, 5): 'P', (4, 5): 'S', (3, 1): 'V', (3, 4): 'J'}
+    # #
     #
-
     # enigmini.row_column_lookup = rc_lookup
     # enigmini.character_lookup = c_lookup
     # message = enigmini.encode(cypher_d, True)
     # print(message)
+    #
+    # enigmini.clicks = 0
+    # message = enigmini.encode(message, True)
+    # print("<", message)
+    # print(">", cypher_d)
     break # only need one
-
+# exit()
 
 enigmini_test = Enigma(sleutelvierkant, (0, 1, 2, 3, 4, 5), solutions_c[0][1], solutions_c[0][0], (0, 0))
 
@@ -404,111 +423,95 @@ show_message(cypher_d)
 
 # enigmini contains correct settings now
 
+letters = list('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+
 class Solution:
     def __init__(self):
-        self.used = set()
-        self.illegal_rows = defaultdict(set) # sets with illegal chars for row n
-        self.illegal_columns = defaultdict(set) # sets with illegal chars for column n
         self.char_to_row_column_lookup = {} # lookup row and column for char
         self.row_column_to_character_lookup = {} # lookup char for row and column
 
     def is_used(self, c):
-        return c in self.used
+        return c in self.char_to_row_column_lookup
 
-    def is_legal_in_this_row(self, c, row):
-        return c not in self.illegal_rows[row]
-
-    def is_legal_in_this_column(self, c, col):
-        return c not in self.illegal_columns[col]
-
-    def all_legal_row_columns(self, c):
-        for i in range(6):
-            if c in self.illegal_rows:
-                continue # skip illegal row
-            for j in range(6):
-                if (i, j) in self.row_column_to_character_lookup:
-                    continue # cannot overwrite others
-
-                if c in self.illegal_columns:
-                    continue  # skip illegal column
-                yield i, j
-
-    def all_legal_chars(self, row, col):
+    def all_legal_chars(self):
         for c in letters:
-            if c in self.used:
+            if c in self.char_to_row_column_lookup:
                 continue # cannot use same letter twice
-
-            # TODO: if think this is not possible (and only happens because of errors)
-
-            # if not self.is_legal_in_this_row(c, row):
-            #     continue
-            # if not self.is_legal_in_this_column(c, col):
-            #     continue
 
             yield c
 
-    def use(self, c, row, column):
-        assert c not in self.used, "something went wrong, trying to use a second time"
+    def all_legal_positions(self):
+        for i in range(6):
+            for j in range(6):
+                if (i, j) in self.row_column_to_character_lookup:
+                    continue
+                yield i, j
 
-        self.used.add(c)
+    def use(self, c, row, column):
+        assert c not in self.char_to_row_column_lookup, "something went wrong, trying to use char a second time"
+        assert (row, column) not in self.row_column_to_character_lookup, "something went wrong, trying to use pos a second time"
+
         self.char_to_row_column_lookup[c] = (row, column)  # lookup row and column for char
         self.row_column_to_character_lookup[(row, column)] = c  # lookup char for row and column
 
     def un_use(self, c, row, column):
-        assert c in self.used, "something went wrong, trying to remove unused char"
+        assert c in self.char_to_row_column_lookup, "something went wrong, trying to remove unused char"
+        assert (row, column) in self.row_column_to_character_lookup, "something went wrong, trying to remove empty pos"
 
-        self.used.remove(c)
         self.char_to_row_column_lookup.pop(c)
         self.row_column_to_character_lookup.pop((row, column))
 
-    def invalidate_row_column(self, c, row, column):
-        changed = c not in self.illegal_rows[row], c not in self.illegal_columns[column]
-
-        self.illegal_rows[row].add(c)
-        self.illegal_columns[column].add(c)
-
-        return changed # True if a change was made (False meant the char was already illegal)
-
-    def un_invalidate_row_column(self, c, row, column, changed):
-        changed = c not in self.illegal_rows[row], c not in self.illegal_columns[column]
-
-        if changed[0]:
-            self.illegal_rows[row].remove(c)
-        if changed[1]:
-            self.illegal_columns[column].remove(c)
-
     def __repr__(self):
-        return f"Used {self.used}\nIllegal rows: {self.illegal_rows}\nIllegal columns: {self.illegal_columns}\nRow/col lookup: {self.char_to_row_column_lookup}\nChar lookup:  = {self.row_column_to_character_lookup}"
+        return f"row_column_lookup = {self.char_to_row_column_lookup}\ncharacter_lookup = {self.row_column_to_character_lookup}"
 
 
 def try_m(enigmini: Enigma, position, cypher, solution: Solution, tree_node, tree_root, m, length_last_word, result):
+    if m.isnumeric() and position == 0:
+        return # forbid non alfa at pos 0
+
+    #
+    # # with wordtrie
+    #
     # # continue word
-    # if m in tree_node.children:
+    # if m in tree_node.children and m.isnumeric() != result:
     #     crack_sleutelvierkant(enigmini, position + 1, cypher, solution, tree_node.children[m], tree_root, length_last_word + 1, result)
     #
-    # # TODO: one letter allowed is disabled
-    # # start new word
-    # if (tree_node.is_end and length_last_word > 1) or m == "0": # TODO: beter nadenken over spaties,
-    #     crack_sleutelvierkant(enigmini, position + 1, cypher, solution, tree_root.children[m], tree_root, 0, result)
+    # # start new word if possible
+    # if tree_node.is_end and m in tree_root.children:
+    #     # next_result = result.copy(
+    #     # next_result.append(length_last_word + 1)
+    #     crack_sleutelvierkant(enigmini, position + 1, cypher, solution, tree_root.children[m], tree_root, 0, not result)
     #
-    # if m.isnumeric() and position == 0:
-    #     return # forbid non alfa at pos 0
     #
-    # next_result = result.copy()
     #
-    # if m.isnumeric():
-    #     next_result["num"] += 1
+    # # # pattern 2-10 alpha, 1-2 non alpha
+    # if m.isalpha():
+    #     if result == "alpha":
+    #         if length_last_word < 10:
+    #             crack_sleutelvierkant(enigmini, position + 1, cypher, solution, tree_node, tree_root, length_last_word + 1,
+    #                                   "alpha")
+    #     if result == "num":
+    #         crack_sleutelvierkant(enigmini, position + 1, cypher, solution, tree_node, tree_root,
+    #                                   1,
+    #                                   "alpha")
     # else:
-    #     next_result["alf"] += 1
-    #
-    # if position > 1 and next_result["num"] / next_result["alf"] >= 0.5:
-    #     return
-    #
-    # # TODO: find better way to invalidate solutions!
+    #     if m == "0": # only spaces
+    #         if result == "alpha":
+    #             if length_last_word > 1:
+    #                 crack_sleutelvierkant(enigmini, position + 1, cypher, solution, tree_node, tree_root,
+    #                                       1,
+    #                                       "num")
+            # if result == "num":
+            #     if length_last_word < 2:
+            #         crack_sleutelvierkant(enigmini, position + 1, cypher, solution, tree_node, tree_root,
+            #                               length_last_word + 1,
+            #                               "num")
+
+    # TODO: find better way to invalidate solutions!
 
     next_result = result
 
-    fixed_letters = "IN0DE" #986543210 (5 = ")
+    fixed_letters = "EEN0TWEE0DRIE" #986543210 (5 = ")
 
     if position < len(fixed_letters):
         if m != fixed_letters[position]:
@@ -524,20 +527,16 @@ def find_all_m(enigmini: Enigma, position, cypher, solution: Solution, tree_node
 
     if (row_m, col_m) in solution.row_column_to_character_lookup:
         m = solution.row_column_to_character_lookup[(row_m, col_m)]
-        # nothing changed to solution
+        # nothing changed in solution
         try_m(enigmini, position, cypher, solution, tree_node, tree_root, m, length_last_word, result)
     else:
-        for m in solution.all_legal_chars(row_m, col_m):
+        for m in solution.all_legal_chars():
             # add to solution
             solution.use(m, row_m, col_m)
-            changed_c = solution.invalidate_row_column(c, row_m, col_m)
-            changed_m = solution.invalidate_row_column(m, row_c, col_c)
 
             try_m(enigmini, position, cypher, solution, tree_node, tree_root, m, length_last_word, result)
 
             # cleanup changes
-            solution.un_invalidate_row_column(m, row_c, col_c, changed_m)
-            solution.un_invalidate_row_column(c, row_m, col_m, changed_c)
             solution.un_use(m, row_m, col_m)
 
     # failed to go on, roll back enigma 2 clicks (row, col)
@@ -549,15 +548,16 @@ max_depth = 0
 
 def crack_sleutelvierkant(enigmini, position, cypher, solution: Solution, tree_node, tree_root, length_last_word, result):
     global max_depth
-    # if position > max_depth:
-    #     max_depth = position
-    #     enigmini_test.clicks = 0
-    #     for i in range(position):
-    #         r, c = solution.char_to_row_column_lookup[cypher[i]]
-    #         r, c = enigmini_test.simulate_enigma(r), enigmini_test.simulate_enigma(c)
-    #         print(solution.row_column_to_character_lookup[(r, c)], end="")
-    #     print()
-
+    if position > max_depth:
+        max_depth = position
+        enigmini_test.clicks = 0
+        for i in range(position):
+            r, c = solution.char_to_row_column_lookup[cypher[i]]
+            r, c = enigmini_test.simulate_enigma(r), enigmini_test.simulate_enigma(c)
+            print(solution.row_column_to_character_lookup[(r, c)], end="")
+        print()
+    if position < max_depth - 10:
+        max_depth = position
 
     if position == len(cypher):
         # full cypher in sleutelvierkant
@@ -569,6 +569,7 @@ def crack_sleutelvierkant(enigmini, position, cypher, solution: Solution, tree_n
             print(solution.row_column_to_character_lookup[(r, c)], end="")
         print()
         print(time.time())
+        exit()
         return # find next?
 
 
@@ -578,7 +579,7 @@ def crack_sleutelvierkant(enigmini, position, cypher, solution: Solution, tree_n
         # no change needed check m
         find_all_m(enigmini, position, cypher, solution, tree_node, tree_root, length_last_word, result)
     else:
-        for row, col in solution.all_legal_row_columns(c):
+        for row, col in solution.all_legal_positions():
             solution.use(c, row, col)
             # check m
             find_all_m(enigmini, position, cypher, solution, tree_node, tree_root, length_last_word, result)
@@ -594,7 +595,8 @@ def crack_sleutelvierkant(enigmini, position, cypher, solution: Solution, tree_n
 s = Solution()
 
 print(time.time())
-crack_sleutelvierkant(enigmini, 0, cypher_d, s, wordlist.root, wordlist.root, 0, {"num": 0, "alf": 0})
+wordlist.root.is_end = False # avoid empty words
+crack_sleutelvierkant(enigmini, 0, cypher_d, s, wordlist.root, wordlist.root, 0, True)
 
 
 # print("".join(sorted(list(set(list(cypher_d))))))
@@ -604,41 +606,6 @@ enigmini.row_column_lookup = {'7': (0, 0), 'A': (3, 3), 'R': (0, 1), 'B': (1, 2)
 enigmini.character_lookup = {(0, 0): '7', (3, 3): 'A', (0, 1): 'R', (1, 2): 'B', (3, 5): 'C', (0, 2): 'N', (1, 0): 'D', (0, 3): 'G', (3, 1): 'E', (0, 4): '4', (4, 3): 'F', (2, 1): 'H', (1, 3): 'I', (5, 5): 'J', (0, 5): 'K', (1, 1): '8', (1, 4): '3', (3, 0): 'L', (1, 5): 'Y', (5, 3): 'M', (2, 0): 'U', (2, 2): 'Z', (2, 3): 'O', (4, 0): 'P', (5, 4): 'Q', (2, 4): 'W', (4, 2): 'S', (2, 5): 'T', (5, 1): 'V', (3, 2): 'X', (3, 4): '9', (5, 2): '2', (4, 1): '6', (4, 4): '5', (4, 5): '1', (5, 0): '0'}
 
 message_d = enigmini.encode(cypher_d)
-
-
-# Used {'D', '7', 'I', 'O', 'V', 'U', '0', 'G', '5', 'Z', '3', '2', 'Y', 'B', '8', 'S', 'C', 'Q', '1', 'T', 'F', 'P', 'X', 'L', 'N', '9', '4', 'E', 'J', 'K', 'A', '6', 'R', 'M', 'W', 'H'}
-# Illegal rows: defaultdict(<class 'set'>, {3: {'7', 'B', 'I', '0', 'G', 'Q', 'H', 'J', '3'}, 0: {'D', 'B', 'F', 'A', 'E', '1'}, 1: {'L', 'R', 'C', 'N'}, 4: {'7', 'O', 'H', '4', 'W'}, 2: {'P', 'A', 'V', 'M', 'S', '5', '2'}, 5: {'T', 'A', 'O', 'H', '9', 'E'}})
-# Illegal columns: defaultdict(<class 'set'>, {3: {'7', 'P', 'E', '5', '4', 'H', 'Q', 'C'}, 0: {'A', 'O', 'N', '3', '1'}, 2: {'D', 'R', 'W', '9', 'C'}, 1: {'T', 'B', 'A', 'M', 'G', 'J', '2'}, 5: {'B', 'I', 'V', 'H', 'E'}, 4: {'7', 'F', 'A', '0', 'L', 'S'}})
-# Row/col lookup: {'7': (0, 0), 'A': (3, 3), 'R': (0, 1), 'B': (1, 2), 'C': (3, 5), 'N': (0, 2), 'D': (1, 0), 'G': (0, 3), 'E': (3, 1), '4': (0, 4), 'F': (4, 3), 'H': (2, 1), 'I': (1, 3), 'J': (5, 5), 'K': (0, 5), '8': (1, 1), '3': (1, 4), 'L': (3, 0), 'Y': (1, 5), 'M': (5, 3), 'U': (2, 0), 'Z': (2, 2), 'O': (2, 3), 'P': (4, 0), 'Q': (5, 4), 'W': (2, 4), 'S': (4, 2), 'T': (2, 5), 'V': (5, 1), 'X': (3, 2), '9': (3, 4), '0': (5, 2), '6': (4, 1), '1': (4, 4), '2': (4, 5), '5': (5, 0)}
-# Char lookup:  = {(0, 0): '7', (3, 3): 'A', (0, 1): 'R', (1, 2): 'B', (3, 5): 'C', (0, 2): 'N', (1, 0): 'D', (0, 3): 'G', (3, 1): 'E', (0, 4): '4', (4, 3): 'F', (2, 1): 'H', (1, 3): 'I', (5, 5): 'J', (0, 5): 'K', (1, 1): '8', (1, 4): '3', (3, 0): 'L', (1, 5): 'Y', (5, 3): 'M', (2, 0): 'U', (2, 2): 'Z', (2, 3): 'O', (4, 0): 'P', (5, 4): 'Q', (2, 4): 'W', (4, 2): 'S', (2, 5): 'T', (5, 1): 'V', (3, 2): 'X', (3, 4): '9', (5, 2): '0', (4, 1): '6', (4, 4): '1', (4, 5): '2', (5, 0): '5'}
-# Used {'D', '7', 'I', 'O', 'V', 'U', '0', 'G', '5', 'Z', '3', '2', 'Y', 'B', '8', 'S', 'C', 'Q', '1', 'T', 'F', 'P', 'X', 'L', 'N', '9', '4', 'E', 'J', 'K', 'A', '6', 'R', 'M', 'W', 'H'}
-# Illegal rows: defaultdict(<class 'set'>, {3: {'7', 'B', 'I', '0', 'G', 'Q', 'H', 'J', '3'}, 0: {'D', 'B', 'F', 'A', 'E', '1'}, 1: {'L', 'R', 'C', 'N'}, 4: {'7', 'O', 'H', '4', 'W'}, 2: {'P', 'A', 'V', 'M', 'S', '5', '2'}, 5: {'T', 'A', 'O', 'H', '9', 'E'}})
-# Illegal columns: defaultdict(<class 'set'>, {3: {'7', 'P', 'E', '5', '4', 'H', 'Q', 'C', '2'}, 0: {'A', 'O', 'N', '3', '1'}, 2: {'D', 'R', 'W', '9', 'C'}, 1: {'T', 'B', 'A', 'M', 'G', '5', 'J', '2'}, 5: {'B', 'I', 'V', 'H', 'E'}, 4: {'7', 'F', 'A', '0', 'L', 'S'}})
-# Row/col lookup: {'7': (0, 0), 'A': (3, 3), 'R': (0, 1), 'B': (1, 2), 'C': (3, 5), 'N': (0, 2), 'D': (1, 0), 'G': (0, 3), 'E': (3, 1), '4': (0, 4), 'F': (4, 3), 'H': (2, 1), 'I': (1, 3), 'J': (5, 5), 'K': (0, 5), '8': (1, 1), '3': (1, 4), 'L': (3, 0), 'Y': (1, 5), 'M': (5, 3), 'U': (2, 0), 'Z': (2, 2), 'O': (2, 3), 'P': (4, 0), 'Q': (5, 4), 'W': (2, 4), 'S': (4, 2), 'T': (2, 5), 'V': (5, 1), 'X': (3, 2), '9': (3, 4), '0': (5, 2), '6': (4, 1), '1': (4, 4), '5': (4, 5), '2': (5, 0)}
-# Char lookup:  = {(0, 0): '7', (3, 3): 'A', (0, 1): 'R', (1, 2): 'B', (3, 5): 'C', (0, 2): 'N', (1, 0): 'D', (0, 3): 'G', (3, 1): 'E', (0, 4): '4', (4, 3): 'F', (2, 1): 'H', (1, 3): 'I', (5, 5): 'J', (0, 5): 'K', (1, 1): '8', (1, 4): '3', (3, 0): 'L', (1, 5): 'Y', (5, 3): 'M', (2, 0): 'U', (2, 2): 'Z', (2, 3): 'O', (4, 0): 'P', (5, 4): 'Q', (2, 4): 'W', (4, 2): 'S', (2, 5): 'T', (5, 1): 'V', (3, 2): 'X', (3, 4): '9', (5, 2): '0', (4, 1): '6', (4, 4): '1', (4, 5): '5', (5, 0): '2'}
-# Used {'D', '7', 'I', 'O', 'V', 'U', '0', 'G', '5', 'Z', '3', '2', 'Y', 'B', '8', 'S', 'C', 'Q', '1', 'T', 'F', 'P', 'X', 'L', 'N', '9', '4', 'E', 'J', 'K', 'A', '6', 'R', 'M', 'W', 'H'}
-# Illegal rows: defaultdict(<class 'set'>, {3: {'7', 'B', 'I', '0', 'G', 'Q', 'H', 'J', '3'}, 0: {'D', 'B', 'F', 'A', 'E', '2', '1'}, 1: {'L', 'R', 'C', 'N'}, 4: {'7', 'O', 'H', '4', 'W'}, 2: {'P', 'A', 'V', 'M', 'S', '5', '2', '1'}, 5: {'T', 'A', 'O', 'H', '9', 'E'}})
-# Illegal columns: defaultdict(<class 'set'>, {3: {'7', 'P', 'E', '5', '4', 'H', 'Q', 'C', '2'}, 0: {'A', 'O', 'N', '3', '2', '1'}, 2: {'D', 'R', 'W', '9', 'C'}, 1: {'T', 'B', 'A', 'M', 'G', '5', 'J', '2', '1'}, 5: {'B', 'I', 'V', 'H', 'E'}, 4: {'7', 'F', 'A', '0', 'L', 'S'}})
-# Row/col lookup: {'7': (0, 0), 'A': (3, 3), 'R': (0, 1), 'B': (1, 2), 'C': (3, 5), 'N': (0, 2), 'D': (1, 0), 'G': (0, 3), 'E': (3, 1), '4': (0, 4), 'F': (4, 3), 'H': (2, 1), 'I': (1, 3), 'J': (5, 5), 'K': (0, 5), '8': (1, 1), '3': (1, 4), 'L': (3, 0), 'Y': (1, 5), 'M': (5, 3), 'U': (2, 0), 'Z': (2, 2), 'O': (2, 3), 'P': (4, 0), 'Q': (5, 4), 'W': (2, 4), 'S': (4, 2), 'T': (2, 5), 'V': (5, 1), 'X': (3, 2), '9': (3, 4), '0': (5, 2), '6': (4, 1), '2': (4, 4), '1': (4, 5), '5': (5, 0)}
-# Char lookup:  = {(0, 0): '7', (3, 3): 'A', (0, 1): 'R', (1, 2): 'B', (3, 5): 'C', (0, 2): 'N', (1, 0): 'D', (0, 3): 'G', (3, 1): 'E', (0, 4): '4', (4, 3): 'F', (2, 1): 'H', (1, 3): 'I', (5, 5): 'J', (0, 5): 'K', (1, 1): '8', (1, 4): '3', (3, 0): 'L', (1, 5): 'Y', (5, 3): 'M', (2, 0): 'U', (2, 2): 'Z', (2, 3): 'O', (4, 0): 'P', (5, 4): 'Q', (2, 4): 'W', (4, 2): 'S', (2, 5): 'T', (5, 1): 'V', (3, 2): 'X', (3, 4): '9', (5, 2): '0', (4, 1): '6', (4, 4): '2', (4, 5): '1', (5, 0): '5'}
-# Used {'D', '7', 'I', 'O', 'V', 'U', '0', 'G', '5', 'Z', '3', '2', 'Y', 'B', '8', 'S', 'C', 'Q', '1', 'T', 'F', 'P', 'X', 'L', 'N', '9', '4', 'E', 'J', 'K', 'A', '6', 'R', 'M', 'W', 'H'}
-# Illegal rows: defaultdict(<class 'set'>, {3: {'7', 'B', 'I', '0', 'G', 'Q', 'H', 'J', '3', '1'}, 0: {'D', 'B', 'F', 'A', '5', 'E', '2', '1'}, 1: {'L', 'R', 'C', 'N'}, 4: {'7', 'O', 'H', '4', 'W'}, 2: {'P', 'A', 'V', 'M', '0', 'S', '5', '2', '1'}, 5: {'T', 'A', 'O', 'H', '9', 'E'}})
-# Illegal columns: defaultdict(<class 'set'>, {3: {'7', 'P', '0', 'E', '5', '4', 'H', 'Q', 'C', '2'}, 0: {'A', 'O', 'N', '5', '3', '2', '1'}, 2: {'D', 'R', 'W', '9', 'C'}, 1: {'T', 'B', 'A', 'M', '0', 'G', '5', 'J', '2', '1'}, 5: {'B', 'I', 'V', 'H', 'E'}, 4: {'7', 'F', 'A', '0', 'L', 'S', '1'}})
-# Row/col lookup: {'7': (0, 0), 'A': (3, 3), 'R': (0, 1), 'B': (1, 2), 'C': (3, 5), 'N': (0, 2), 'D': (1, 0), 'G': (0, 3), 'E': (3, 1), '4': (0, 4), 'F': (4, 3), 'H': (2, 1), 'I': (1, 3), 'J': (5, 5), 'K': (0, 5), '8': (1, 1), '3': (1, 4), 'L': (3, 0), 'Y': (1, 5), 'M': (5, 3), 'U': (2, 0), 'Z': (2, 2), 'O': (2, 3), 'P': (4, 0), 'Q': (5, 4), 'W': (2, 4), 'S': (4, 2), 'T': (2, 5), 'V': (5, 1), 'X': (3, 2), '9': (3, 4), '1': (5, 2), '6': (4, 1), '2': (4, 4), '5': (4, 5), '0': (5, 0)}
-# Char lookup:  = {(0, 0): '7', (3, 3): 'A', (0, 1): 'R', (1, 2): 'B', (3, 5): 'C', (0, 2): 'N', (1, 0): 'D', (0, 3): 'G', (3, 1): 'E', (0, 4): '4', (4, 3): 'F', (2, 1): 'H', (1, 3): 'I', (5, 5): 'J', (0, 5): 'K', (1, 1): '8', (1, 4): '3', (3, 0): 'L', (1, 5): 'Y', (5, 3): 'M', (2, 0): 'U', (2, 2): 'Z', (2, 3): 'O', (4, 0): 'P', (5, 4): 'Q', (2, 4): 'W', (4, 2): 'S', (2, 5): 'T', (5, 1): 'V', (3, 2): 'X', (3, 4): '9', (5, 2): '1', (4, 1): '6', (4, 4): '2', (4, 5): '5', (5, 0): '0'}
-# Used {'D', '7', 'I', 'O', 'V', 'U', '0', 'G', '5', 'Z', '3', '2', 'Y', 'B', '8', 'S', 'C', 'Q', '1', 'T', 'F', 'P', 'X', 'L', 'N', '9', '4', 'E', 'J', 'K', 'A', '6', 'R', 'M', 'W', 'H'}
-# Illegal rows: defaultdict(<class 'set'>, {3: {'7', 'B', 'I', '0', 'G', 'Q', 'H', 'J', '3', '1'}, 0: {'D', 'B', 'F', 'A', '5', 'E', '2', '1'}, 1: {'L', 'R', 'C', 'N'}, 4: {'7', 'O', 'H', '4', 'W'}, 2: {'P', 'A', 'V', 'M', '0', 'S', '5', '2', '1'}, 5: {'T', 'A', 'O', 'H', '9', 'E'}})
-# Illegal columns: defaultdict(<class 'set'>, {3: {'7', 'P', '0', 'E', '5', '4', 'H', 'Q', 'C', '2'}, 0: {'A', 'O', 'N', '5', '3', '2', '1'}, 2: {'D', 'R', 'W', '9', 'C'}, 1: {'T', 'B', 'A', 'M', '0', 'G', '5', 'J', '2', '1'}, 5: {'B', 'I', 'V', 'H', 'E'}, 4: {'7', 'F', 'A', '0', 'L', 'S', '1'}})
-# Row/col lookup: {'7': (0, 0), 'A': (3, 3), 'R': (0, 1), 'B': (1, 2), 'C': (3, 5), 'N': (0, 2), 'D': (1, 0), 'G': (0, 3), 'E': (3, 1), '4': (0, 4), 'F': (4, 3), 'H': (2, 1), 'I': (1, 3), 'J': (5, 5), 'K': (0, 5), '8': (1, 1), '3': (1, 4), 'L': (3, 0), 'Y': (1, 5), 'M': (5, 3), 'U': (2, 0), 'Z': (2, 2), 'O': (2, 3), 'P': (4, 0), 'Q': (5, 4), 'W': (2, 4), 'S': (4, 2), 'T': (2, 5), 'V': (5, 1), 'X': (3, 2), '9': (3, 4), '1': (5, 2), '6': (4, 1), '5': (4, 4), '2': (4, 5), '0': (5, 0)}
-# Char lookup:  = {(0, 0): '7', (3, 3): 'A', (0, 1): 'R', (1, 2): 'B', (3, 5): 'C', (0, 2): 'N', (1, 0): 'D', (0, 3): 'G', (3, 1): 'E', (0, 4): '4', (4, 3): 'F', (2, 1): 'H', (1, 3): 'I', (5, 5): 'J', (0, 5): 'K', (1, 1): '8', (1, 4): '3', (3, 0): 'L', (1, 5): 'Y', (5, 3): 'M', (2, 0): 'U', (2, 2): 'Z', (2, 3): 'O', (4, 0): 'P', (5, 4): 'Q', (2, 4): 'W', (4, 2): 'S', (2, 5): 'T', (5, 1): 'V', (3, 2): 'X', (3, 4): '9', (5, 2): '1', (4, 1): '6', (4, 4): '5', (4, 5): '2', (5, 0): '0'}
-# Used {'D', '7', 'I', 'O', 'V', 'U', '0', 'G', '5', 'Z', '3', '2', 'Y', 'B', '8', 'S', 'C', 'Q', '1', 'T', 'F', 'P', 'X', 'L', 'N', '9', '4', 'E', 'J', 'K', 'A', '6', 'R', 'M', 'W', 'H'}
-# Illegal rows: defaultdict(<class 'set'>, {3: {'7', 'B', 'I', '0', 'G', 'Q', 'H', 'J', '3', '2', '1'}, 0: {'D', 'B', 'F', 'A', '5', 'E', '2', '1'}, 1: {'L', 'R', 'C', 'N'}, 4: {'7', 'O', 'H', '4', 'W'}, 2: {'P', 'A', 'V', 'M', '0', 'S', '5', '2', '1'}, 5: {'T', 'A', 'O', 'H', '9', 'E'}})
-# Illegal columns: defaultdict(<class 'set'>, {3: {'7', 'P', '0', 'E', '5', '4', 'H', 'Q', 'C', '2'}, 0: {'A', 'O', 'N', '5', '3', '2', '1'}, 2: {'D', 'R', 'W', '9', 'C'}, 1: {'T', 'B', 'A', 'M', '0', 'G', '5', 'J', '2', '1'}, 5: {'B', 'I', 'V', 'H', 'E'}, 4: {'7', 'F', 'A', '0', 'L', 'S', '2', '1'}})
-# Row/col lookup: {'7': (0, 0), 'A': (3, 3), 'R': (0, 1), 'B': (1, 2), 'C': (3, 5), 'N': (0, 2), 'D': (1, 0), 'G': (0, 3), 'E': (3, 1), '4': (0, 4), 'F': (4, 3), 'H': (2, 1), 'I': (1, 3), 'J': (5, 5), 'K': (0, 5), '8': (1, 1), '3': (1, 4), 'L': (3, 0), 'Y': (1, 5), 'M': (5, 3), 'U': (2, 0), 'Z': (2, 2), 'O': (2, 3), 'P': (4, 0), 'Q': (5, 4), 'W': (2, 4), 'S': (4, 2), 'T': (2, 5), 'V': (5, 1), 'X': (3, 2), '9': (3, 4), '2': (5, 2), '6': (4, 1), '5': (4, 4), '1': (4, 5), '0': (5, 0)}
-# Char lookup:  = {(0, 0): '7', (3, 3): 'A', (0, 1): 'R', (1, 2): 'B', (3, 5): 'C', (0, 2): 'N', (1, 0): 'D', (0, 3): 'G', (3, 1): 'E', (0, 4): '4', (4, 3): 'F', (2, 1): 'H', (1, 3): 'I', (5, 5): 'J', (0, 5): 'K', (1, 1): '8', (1, 4): '3', (3, 0): 'L', (1, 5): 'Y', (5, 3): 'M', (2, 0): 'U', (2, 2): 'Z', (2, 3): 'O', (4, 0): 'P', (5, 4): 'Q', (2, 4): 'W', (4, 2): 'S', (2, 5): 'T', (5, 1): 'V', (3, 2): 'X', (3, 4): '9', (5, 2): '2', (4, 1): '6', (4, 4): '5', (4, 5): '1', (5, 0): '0'}
-
-
-
 
 
 
