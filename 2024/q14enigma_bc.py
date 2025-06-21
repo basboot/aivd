@@ -511,17 +511,13 @@ def try_m(enigmini: Enigma, position, cypher, solution: Solution, tree_node, tre
 
     next_result = result
 
-    fixed_letters = "EEN0TWEE0DRIE" #986543210 (5 = ")
-
-    if position < len(fixed_letters):
-        if m != fixed_letters[position]:
-            return
     crack_sleutelvierkant(enigmini, position + 1, cypher, solution, tree_node, tree_root,
                           0, next_result)
 
 
 def find_all_m(enigmini: Enigma, position, cypher, solution: Solution, tree_node, tree_root, length_last_word, result):
     c = cypher[position]
+    enigmini.clicks = position * 2 # we want to be able to solve out of order
     row_c, col_c = solution.char_to_row_column_lookup[c]
     row_m, col_m = enigmini.simulate_enigma(row_c), enigmini.simulate_enigma(col_c)
 
@@ -539,12 +535,52 @@ def find_all_m(enigmini: Enigma, position, cypher, solution: Solution, tree_node
             # cleanup changes
             solution.un_use(m, row_m, col_m)
 
-    # failed to go on, roll back enigma 2 clicks (row, col)
-    enigmini.clicks -= 2
-
     return False
 
 max_depth = 0
+
+def is_c_possible(enigmini, c, m, position, solution: Solution):
+    enigmini.clicks = position * 2  # we want to be able to solve out of order
+    row_c, col_c = solution.char_to_row_column_lookup[c]
+    row_m, col_m = enigmini.simulate_enigma(row_c), enigmini.simulate_enigma(col_c)
+
+    if (row_m, col_m) in solution.row_column_to_character_lookup:
+        # mapping must be correct
+        return solution.row_column_to_character_lookup[(row_m, col_m)] == m, row_m, col_m
+    else:
+        # or mapping must be possible
+        return m not in solution.char_to_row_column_lookup, row_m, col_m
+
+
+def fix_partial_solution(enigmini, current_fix, fixed_positions, cypher, solution: Solution):
+    if current_fix == len(fixed_positions):
+        yield solution
+
+    else:
+
+        position, m = fixed_positions[current_fix]
+        c = cypher[position]
+
+        if solution.is_used(c):
+            # no change needed check m
+            if is_c_possible(enigmini, c, m, position, solution):
+                yield from fix_partial_solution(enigmini, current_fix + 1, fixed_positions, cypher, solution)
+        else:
+            for row, col in solution.all_legal_positions():
+                solution.use(c, row, col)
+                # check m
+                is_option, row_m, col_m = is_c_possible(enigmini, c, m, position, solution)
+                if is_option:
+                    if m not in solution.char_to_row_column_lookup:
+                        solution.use(m, row_m, col_m)
+                        yield from fix_partial_solution(enigmini, current_fix + 1, fixed_positions, cypher, solution)
+                        solution.un_use(m, row_m, col_m)
+                    else:
+                        yield from fix_partial_solution(enigmini, current_fix + 1, fixed_positions, cypher, solution)
+                # remove
+                solution.un_use(c, row, col)
+
+
 
 def crack_sleutelvierkant(enigmini, position, cypher, solution: Solution, tree_node, tree_root, length_last_word, result):
     global max_depth
@@ -568,9 +604,8 @@ def crack_sleutelvierkant(enigmini, position, cypher, solution: Solution, tree_n
             r, c = enigmini_test.simulate_enigma(r), enigmini_test.simulate_enigma(c)
             print(solution.row_column_to_character_lookup[(r, c)], end="")
         print()
-        print(time.time())
         exit()
-        return # find next?
+        return
 
 
     c = cypher[position]
@@ -593,6 +628,14 @@ def crack_sleutelvierkant(enigmini, position, cypher, solution: Solution, tree_n
 # TODO: sta onbekende woorden toe
 
 s = Solution()
+
+i = 0
+for s in fix_partial_solution(enigmini, 0, [(3, "0"), (6, "0"), (9, "0"), (len(cypher_d) - 1, "3")], cypher_d, s):
+    print(i)
+    i += 1
+    print(s)
+    break
+
 
 print(time.time())
 wordlist.root.is_end = False # avoid empty words

@@ -3,8 +3,8 @@ from collections import Counter
 from unidecode import unidecode
 
 file1 = open('wikisteden.txt', 'r')
-file1 = open('alabama.txt', 'r')
-file1 = open('newyork.txt', 'r')
+# file1 = open('alabama.txt', 'r')
+# file1 = open('newyork.txt', 'r')
 
 lines = file1.readlines()
 
@@ -55,6 +55,9 @@ def add_descriptions(desc1, desc2):
     answer = "".join(result)
 
     return answer, answer in answers
+
+print(add_descriptions("MARS", "DE RODE PLANEET"))
+exit()
 
 
 

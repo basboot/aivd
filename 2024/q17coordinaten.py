@@ -26,6 +26,7 @@ def letter_to_scrabble_points(letter):
 def show_numbers(s):
     if s[0] == '-':  # remove minus
         s = s[1:]
+    s = s[:3]
     alphabet_value = [ord(x) - ord('A') + 1 for x in list(s)]
     asci_value = [ord(x) for x in list(s)]
     phone_value = [letter_to_phonepad(x) for x in list(s)]
@@ -50,7 +51,9 @@ def show_numbers(s):
 # 34.134061 -118.321592
 # (PRATEN, -MISLUKT)
 
+print("praten", "34.134061")
 show_numbers("PRATEN")
+print("mislukt",  "-118.321592")
 show_numbers("MISLUKT")
 
 # Hollywood Sign op een heuvel in Wicklow
@@ -59,7 +62,9 @@ show_numbers("MISLUKT")
 # 53.090556 -6.601944
 # (SHANDY, -WITJE).
 
+print("shandy", "53.090556")
 show_numbers("SHANDY")
+print("witje", "-6.601944")
 show_numbers("WITJE")
 
 

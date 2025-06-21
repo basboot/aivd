@@ -1,5 +1,23 @@
 from collections import deque
 
+from matplotlib import pyplot as plt
+
+from q16shingoki import plot_numbers_on_grid
+
+
+black = {
+    2 + 4*1j: 2,
+    3 + 3*1j: 2,
+    5 + 2*1j: 5,
+    5 + 5*1j: 6,
+}
+
+white = {
+    1 + 3*1j: 2,
+    2 + 1*1j: 5,
+    2 + 5*1j: 5,
+    3 + 2*1j: 4,
+}
 
 # add connect options for piece
 # store connect options for later use
@@ -46,15 +64,18 @@ def find_all_paths(start: complex, goal: complex, used: set[complex], shape: (in
 
 
 if __name__ == '__main__':
-    for option in get_black_options(0 + 0*1j, 3):
-        print(option)
-        print(fits_on_board(option, 5, 5))
+    # for option in get_black_options(0 + 0*1j, 3):
+    #     print(option)
+    #     print(fits_on_board(option, 5, 5))
+    #
+    # start = 0 + 0j
+    # goal = 3 + 3j
+    # used = {1 + 0j, 2 + 0j, 3 + 0j, 3 + 1j, 3 + 2j, 3 + 3j}  # Goal is in used
+    # shape = (4, 4)
+    #
+    # paths = find_all_paths(start, goal, used, shape)
+    # for i, path in enumerate(paths, 1):
+    #     print(f"Path {i}: {path}")
 
-    start = 0 + 0j
-    goal = 3 + 3j
-    used = {1 + 0j, 2 + 0j, 3 + 0j, 3 + 1j, 3 + 2j, 3 + 3j}  # Goal is in used
-    shape = (4, 4)
-
-    paths = find_all_paths(start, goal, used, shape)
-    for i, path in enumerate(paths, 1):
-        print(f"Path {i}: {path}")
+    plot_numbers_on_grid(black, white, 5, 5)
+    plt.show()

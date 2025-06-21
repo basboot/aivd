@@ -20,10 +20,10 @@ import random
 wordslist = defaultdict(list)
 
 for filename in [
-                "./wordlists/troonrede.txt",
+                # "./wordlists/troonrede.txt",
                 "./wordlists/OpenTaal-210G-basis-gekeurd.txt",
-                 "./wordlists/OpenTaal-210G-basis-ongekeurd.txt",
-                 "./wordlists/OpenTaal-210G-flexievormen.txt",
+                 # "./wordlists/OpenTaal-210G-basis-ongekeurd.txt",
+                 # "./wordlists/OpenTaal-210G-flexievormen.txt",
                  # "./wordlists/english.txt",
                  # "./wordlists/test.txt",
                  ]:
@@ -32,7 +32,29 @@ for filename in [
 
     for line in Lines:
         word = line.strip().upper()
+        if not word.isalpha():
+            continue
         if len(set(list(word))) == len(word): # no double chars
             wordslist[len(word)].append(word)
 
-print(wordslist[11])
+# print(wordslist[11])
+
+
+def find_possible_words(dms_lat, dms_lon):
+    results = []
+    for word_lat in wordslist[len(dms_lat)]:
+        for word_lon in wordslist[len(dms_lon)]:
+        # print(list(word))
+        # print(list(dms))
+
+            sorted_by_alpha = [num for _, num in sorted(zip(list(word_lat + word_lon), list(dms_lat + dms_lon)))]
+            sorted_by_num = sorted(dms_lat + dms_lon)
+
+            if sorted_by_alpha == sorted_by_num:
+                results.append(f"{word_lat} {word_lon}")
+
+    return results
+
+print(find_possible_words("270719", "1092052"))
+
+

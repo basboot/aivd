@@ -14,7 +14,7 @@ def dms_to_decimal(dms, direction):
 def create_alphabet_to_number(max_values, previous_value, current_char_index, mapping, chars, previous_char):
     if current_char_index == len(chars):
         # TODO: strict oplopend? Zou kunnen betekenen: altijd eindigen op 9, en elke waarde moet voorkomen?
-        if ord('Z') - ord(previous_char) < 9 - previous_value: # no room for last numbers
+        if False or ord('Z') - ord(previous_char) < 9 - previous_value: # no room for last numbers
             pass
         else:
             yield mapping
@@ -40,14 +40,20 @@ max_values = {}
 for i in range(26):
     max_values[chr(i + ord('A'))] = 9
 
-direction = 1
+direction_lat = 1
+direction_lon = 1
 latitude = "VETARM"
 longitude = "ROKJE"
 
 # latitude = "SHANDY"
 # longitude = "-WITJE"
+
+if latitude[0] == "-":
+    direction_lat = -1
+    latitude = latitude[1:]
+
 if longitude[0] == "-":
-    direction = -1
+    direction_lon = -1
     longitude = longitude[1:]
 
 
@@ -61,9 +67,9 @@ for mapping in create_alphabet_to_number(max_values, 0, 0, {}, sorted(set(list(l
     latitude_dms = "".join([mapping[c] for c in list(latitude)])
     longitude_dms = "".join([mapping[c] for c in list(longitude)])
 
-    print(latitude_dms)
+    print(mapping, latitude_dms)
 
-    gps_positions.add((dms_to_decimal(latitude_dms, 1), dms_to_decimal(longitude_dms, direction)))
+    gps_positions.add((dms_to_decimal(latitude_dms, direction_lat), dms_to_decimal(longitude_dms, direction_lon)))
 
 
 for gps_position in gps_positions:

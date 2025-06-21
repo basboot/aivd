@@ -19,6 +19,8 @@ for filename in [
     file1 = open(filename, "r")
     Lines = file1.readlines()
 
+    ng = set(list("NIEUWEGEIN"))
+
     for line in Lines:
         words = re.findall(r'\b\w+\b', line)
 
@@ -28,13 +30,18 @@ for filename in [
             wordset.add(word)
             wordlist.insert(word)
 
-            if len(word) != 9:
+            if len(word) != 4:
                 continue
 
-            if word[4] != word[7]:
+            if word[1] != word[2]:
                 continue
 
-            if len(set(list(word))) != 8:
+
+
+            if len(set(list(word))) != 3:
+                continue
+
+            if len(ng.intersection(set(list(word)))) > 0:
                 continue
 
             print(word)
@@ -105,7 +112,7 @@ def try_substitutions(word_pos, letter_pos, substitutions, used, tree_node, file
 
 
 
-s = {}#{BRUG: 'W', BLAUWE_P: 'E', ZOETERMEER: 'S', VLUCHT_ROUTE: 'V', WIT_OMHOOG: 'O', TUNNEL: 'R'}
+s = {BLAUWE_P: 'E'}#{BRUG: 'W', BLAUWE_P: 'E', ZOETERMEER: 'S', VLUCHT_ROUTE: 'V', WIT_OMHOOG: 'O', TUNNEL: 'R'}
 used = set(s.values())
 with open("q19.txt", "w") as file:
-    try_substitutions(0, 0, s, set(), wordlist.root, file)
+    try_substitutions(0, 0, s, used, wordlist.root, file)

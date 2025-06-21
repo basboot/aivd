@@ -208,54 +208,54 @@ blocks = {
 }
 
 
-# koning zwart
-# color_cell("a5", 'yellow')
-id = "c6"
-add_circle_to_cell(id, 'red', 0.035)
-
-
-for move in ["<", ">", "v", "^", "^<", "^>", "v<", "v>"]:
-    next_id, _, _ = perform_move(id, move, False, False)
-    add_circle_to_cell(next_id, 'red', 0.035)
-    draw_line_between_segments(id, next_id, 'red', 1)
-
-# koning
-# color_cell("a5", 'yellow')
-id = "a5"
-add_circle_to_cell(id, 'grey', 0.025)
-
-for move in ["<", ">", "v", "^", "^<", "^>", "v<", "v>"]:
-    next_id, _, _ = perform_move("a5", move, False, False)
-    add_circle_to_cell(next_id, 'grey', 0.025)
-    draw_line_between_segments(id, next_id, 'grey', 1)
-
-# loper
-for move in ["^>", "^<", "v>", "v<"]:
-    current = "d3"
-    swap_lr = swap_ud = False
-    add_circle_to_cell(current, 'green', 0.025)
-    while True:
-        next, swap_lr, swap_ud = perform_move(current, move, swap_lr, swap_ud)
-        if next is None:
-            break
-        add_circle_to_cell(next, 'green', 0.025)
-        draw_line_between_segments(current, next, 'green', 1)
-
-        current = next
-
-# knightrider
-for i, move in enumerate(["^>>", "^<<", "v>>", "v<<", "^^>", "^^<", "vv>", "vv<"]):
-    current = "b3"
-    swap_lr = swap_ud = False
-    add_circle_to_cell(current, 'yellow', 0.015)
-    while True:
-        next, swap_lr, swap_ud = perform_move(current, move, swap_lr, swap_ud)
-        if next is None:
-            break
-        add_circle_to_cell(next, 'yellow', 0.015)
-        draw_line_between_segments(current, next, 'yellow', 1)
-
-        current = next
+# # koning zwart
+# # color_cell("a5", 'yellow')
+# id = "c6"
+# add_circle_to_cell(id, 'red', 0.035)
+#
+#
+# for move in ["<", ">", "v", "^", "^<", "^>", "v<", "v>"]:
+#     next_id, _, _ = perform_move(id, move, False, False)
+#     add_circle_to_cell(next_id, 'red', 0.035)
+#     draw_line_between_segments(id, next_id, 'red', 1)
+#
+# # koning
+# # color_cell("a5", 'yellow')
+# id = "a5"
+# add_circle_to_cell(id, 'grey', 0.025)
+#
+# for move in ["<", ">", "v", "^", "^<", "^>", "v<", "v>"]:
+#     next_id, _, _ = perform_move("a5", move, False, False)
+#     add_circle_to_cell(next_id, 'grey', 0.025)
+#     draw_line_between_segments(id, next_id, 'grey', 1)
+#
+# # loper
+# for move in ["^>", "^<", "v>", "v<"]:
+#     current = "d3"
+#     swap_lr = swap_ud = False
+#     add_circle_to_cell(current, 'green', 0.025)
+#     while True:
+#         next, swap_lr, swap_ud = perform_move(current, move, swap_lr, swap_ud)
+#         if next is None:
+#             break
+#         add_circle_to_cell(next, 'green', 0.025)
+#         draw_line_between_segments(current, next, 'green', 1)
+#
+#         current = next
+#
+# # knightrider
+# for i, move in enumerate(["^>>", "^<<", "v>>", "v<<", "^^>", "^^<", "vv>", "vv<"]):
+#     current = "b3"
+#     swap_lr = swap_ud = False
+#     add_circle_to_cell(current, 'yellow', 0.015)
+#     while True:
+#         next, swap_lr, swap_ud = perform_move(current, move, swap_lr, swap_ud)
+#         if next is None:
+#             break
+#         add_circle_to_cell(next, 'yellow', 0.015)
+#         draw_line_between_segments(current, next, 'yellow', 1)
+#
+#         current = next
 
 # knighterider 2: e4
 for i, move in enumerate(["^>>", "^<<", "v>>", "v<<", "^^>", "^^<", "vv>", "vv<"]):
@@ -266,8 +266,21 @@ for i, move in enumerate(["^>>", "^<<", "v>>", "v<<", "^^>", "^^<", "vv>", "vv<"
         next, swap_lr, swap_ud = perform_move(current, move, swap_lr, swap_ud)
         if next is None:
             break
-        add_circle_to_cell(next, 'blue', 0.005)
-        # draw_line_between_segments(current, next, 'blue', 1)
+        add_circle_to_cell(next, 'blue', 0.010)
+        draw_line_between_segments(current, next, 'blue', 1)
+
+        current = next
+
+for i, move in enumerate(["^>>", "^<<", "v>>", "v<<", "^^>", "^^<", "vv>", "vv<"]):
+    current = "c7"
+    swap_lr = swap_ud = False
+    add_circle_to_cell(current, 'blue', 0.015)
+    while True:
+        next, swap_lr, swap_ud = perform_move(current, move, swap_lr, swap_ud)
+        if next is None:
+            break
+        add_circle_to_cell(next, 'yellow', 0.005)
+        draw_line_between_segments(current, next, 'yellow', 1)
 
         current = next
 

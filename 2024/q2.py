@@ -1,8 +1,10 @@
-from itertools import permutations, combinations
+from collections import defaultdict
+from itertools import combinations
+import random
 
 import random
 
-wordslist = set()
+wordslist = defaultdict(list)
 
 for filename in [
                 "./wordlists/OpenTaal-210G-basis-gekeurd.txt",
@@ -16,53 +18,45 @@ for filename in [
 
     for line in Lines:
         word = line.strip().upper()
-        wordslist.add(word)
+        wordslist[tuple(sorted(list(word)))].append(word)
 
-
-words_a = [
-    # "DRAAKJES",
-    #  "DRINK",
-    # "KERST",
-    "KETELMAN",
-    # "LEUGEN",
-    # "LEZER",
-    # "PECHKANS",
-    # "SOS",
-    # "TAMARI",
-    # "TESLA",
-    # "ZOEFJE"
+words = [
+    # "KOLEN",
+    # "ESSENTAK",
+    # "REUK",
+    # "KNOTJE",
+    # "EEGA",
+    # "REPOS",
+    # "TRUCS",
+    # "JOGDE",
+    # "ELFTAL",
+    # "SNIJBONEN",
+    # "ALASKA",
+    # "NERD",
+    # "SPIER",
+    "TELEVISIEGIDS",
+    # "TEST",
+    # "TRÈS",
+    # "NEVER",
+    "WINTERVINGER"
 ]
-words_b = [
-    # "BOTJURIST",
-    "KLEMVAST",
-    # "SPOELING",
-    "VRAAGSPEL",
-    "PERKDUO"]
 
-# words_b = ["RETEGOED"]
+print(sorted(words))
 
-# words_b = ["KTZSZEPERUL", "KTLSLIANRAE", "RSHFZCNNZAAE", "AETADIRILANNONTAN", "KRCANIMIRYT"]
+print("----")
 
-# words_b = ["WEGHART", "MESALSPAN", "WESPSORRYGRENS"]
+w1 = words[0]
+for word1, word2 in combinations(words, 2):
+    if word1 != w1:
+        print("------------------")
+    w12 = list(word1 + word2)
+    random.shuffle(w12)
+    print("".join(w12))
 
-# for word_b in words_b:
-#     print(word_b)
-#     for char in list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
-#         for word in permutations(word_b + char):
-#             if word in wordslist:
-#                 print("Found", word)
+    if tuple(sorted(list(word1 + word2))) in wordslist:
+        print("FOUND MATCH: ", end="")
+        print(wordslist[tuple(sorted(list(word1 + word2)))], word1, word2)
 
-# words_b.sort(key=len)
-for word in words_b:
-    for added_letters in ['EU', 'RO', 'PA']: # ['']: #
-        letters = list(word + added_letters)
-        random.shuffle(letters)
-        print("".join(letters), f" ({added_letters})", end='  ')
-    print(f"{word}")
-
-#
-# print("---")
-# for p in permutations(list(words_b[0])):
-#     print("".join(p))
-
+# IETILEDEVRVISNENIGWTRGEIS
+# VIERENTWINTIGDELIGSERVIES
 

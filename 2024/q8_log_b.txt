@@ -1,0 +1,441 @@
+/Users/bas/Code/Python/aivd/.venv/bin/python /Users/bas/Code/Python/aivd/2024/q8.py
+https://www.mldb.org/search?mq=Bohemian+Rhapsody+Queen&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Bohemian Rhapsody Queen
+https://www.mldb.org/search?mq=Fix+You+Coldplay&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Fix You Coldplay
+https://www.mldb.org/search?mq=Hotel+California+Eagles&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Hotel California Eagles
+https://www.mldb.org/search?mq=Roller+Coaster+Danny+Vera&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Roller Coaster Danny Vera
+Roller Coaster Danny Vera NOT FOUND
+https://www.mldb.org/search?mq=Piano+Man+Billy+Joel&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Piano Man Billy Joel
+https://www.mldb.org/search?mq=Better+Days+Dermot+Kennedy&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Better Days Dermot Kennedy
+Better Days Dermot Kennedy NOT FOUND
+https://www.mldb.org/search?mq=Stairway+To+Heaven+Led+Zeppelin&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Stairway To Heaven Led Zeppelin
+https://www.mldb.org/search?mq=Avond+Boudewijn+de+Groot&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Avond Boudewijn de Groot
+https://www.mldb.org/search?mq=Love+Of+My+Life+Queen&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Love Of My Life Queen
+https://www.mldb.org/search?mq=Black+Pearl+Jam&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Black Pearl Jam
+https://www.mldb.org/search?mq=Nothing+Else+Matters++Metallica&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Nothing Else Matters  Metallica
+https://www.mldb.org/search?mq=Wish+You+Were+Here+Pink+Floyd&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Wish You Were Here Pink Floyd
+https://www.mldb.org/search?mq=The+Sound+Of+Silence+Disturbed&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+The Sound Of Silence Disturbed
+The Sound Of Silence Disturbed NOT FOUND
+https://www.mldb.org/search?mq=Soldier+On+DI-RECT&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Soldier On DI-RECT
+Soldier On DI-RECT NOT FOUND
+https://www.mldb.org/search?mq=Comfortably+Numb++Pink+Floyd&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Comfortably Numb  Pink Floyd
+https://www.mldb.org/search?mq=Sultans+Of+Swing+Dire+Straits&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Sultans Of Swing Dire Straits
+https://www.mldb.org/search?mq=November+Rain+Guns+N%27+Roses&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+November Rain Guns N' Roses
+https://www.mldb.org/search?mq=Brothers+In+Arms++Dire+Straits&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Brothers In Arms  Dire Straits
+https://www.mldb.org/search?mq=Child+In+Time++Deep+Purple&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Child In Time  Deep Purple
+https://www.mldb.org/search?mq=Radar+Love++Golden+Earring&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Radar Love  Golden Earring
+https://www.mldb.org/search?mq=Oceaan+Racoon&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Oceaan Racoon
+Oceaan Racoon NOT FOUND
+https://www.mldb.org/search?mq=A+Forest+The+Cure&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+A Forest The Cure
+https://www.mldb.org/search?mq=Telegraph+Road++Dire+Straits&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Telegraph Road  Dire Straits
+https://www.mldb.org/search?mq=Africa+Toto&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Africa Toto
+https://www.mldb.org/search?mq=Shine+On+You+Crazy+Diamond+%28Pts.+1-5%29+Pink+Floyd&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Shine On You Crazy Diamond (Pts. 1-5) Pink Floyd
+Shine On You Crazy Diamond (Pts. 1-5) Pink Floyd NOT FOUND
+https://www.mldb.org/search?mq=Viva+La+Vida+Coldplay&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Viva La Vida Coldplay
+https://www.mldb.org/search?mq=One++Metallica&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+One  Metallica
+https://www.mldb.org/search?mq=In+The+End+Linkin+Park&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+In The End Linkin Park
+https://www.mldb.org/search?mq=Purple+Rain++Prince+%26+The+Revolution&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Purple Rain  Prince & The Revolution
+https://www.mldb.org/search?mq=Thunderstruck+AC%2FDC&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Thunderstruck AC/DC
+Thunderstruck AC/DC NOT FOUND
+https://www.mldb.org/search?mq=Heroes++David+Bowie&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Heroes  David Bowie
+https://www.mldb.org/search?mq=Innuendo+Queen&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Innuendo Queen
+https://www.mldb.org/search?mq=Master+Of+Puppets+Metallica&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Master Of Puppets Metallica
+https://www.mldb.org/search?mq=Cold+Little+Heart++Michael+Kiwanuka&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Cold Little Heart  Michael Kiwanuka
+Cold Little Heart  Michael Kiwanuka NOT FOUND
+https://www.mldb.org/search?mq=The+Chain+Fleetwood+Mac&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+The Chain Fleetwood Mac
+https://www.mldb.org/search?mq=Paradise+By+The+Dashboard+Light++Meat+Loaf&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Paradise By The Dashboard Light  Meat Loaf
+https://www.mldb.org/search?mq=The+River+Bruce+Springsteen&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+The River Bruce Springsteen
+The River Bruce Springsteen NOT FOUND
+https://www.mldb.org/search?mq=Smells+Like+Teen+Spirit+Nirvana&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Smells Like Teen Spirit Nirvana
+https://www.mldb.org/search?mq=Go+Your+Own+Way+Fleetwood+Mac&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Go Your Own Way Fleetwood Mac
+https://www.mldb.org/search?mq=Impossible+%28Orchestral+Version+Live+at+Abbey+Road%29+Nothing+But+Thieves&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Impossible (Orchestral Version Live at Abbey Road) Nothing But Thieves
+Impossible (Orchestral Version Live at Abbey Road) Nothing But Thieves NOT FOUND
+https://www.mldb.org/search?mq=The+Sound+Of+Silence+Simon+%26+Garfunkel&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+The Sound Of Silence Simon & Garfunkel
+https://www.mldb.org/search?mq=Over+De+Muur+Klein+Orkest&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Over De Muur Klein Orkest
+Over De Muur Klein Orkest NOT FOUND
+https://www.mldb.org/search?mq=Just+Breathe+Pearl+Jam&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Just Breathe Pearl Jam
+https://www.mldb.org/search?mq=Shallow+Lady+Gaga+%26+Bradley+Cooper&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Shallow Lady Gaga & Bradley Cooper
+Shallow Lady Gaga & Bradley Cooper NOT FOUND
+https://www.mldb.org/search?mq=In+The+Air+Tonight++Phil+Collins&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+In The Air Tonight  Phil Collins
+https://www.mldb.org/search?mq=Imagine+John+Lennon&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Imagine John Lennon
+https://www.mldb.org/search?mq=Killing+In+The+Name+Rage+Against+The+Machine&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Killing In The Name Rage Against The Machine
+https://www.mldb.org/search?mq=Lose+Yourself+Eminem&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Lose Yourself Eminem
+https://www.mldb.org/search?mq=Dancing+Queen+ABBA&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Dancing Queen ABBA
+https://www.mldb.org/search?mq=Don%27t+Stop+Me+Now+Queen&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Don't Stop Me Now Queen
+https://www.mldb.org/search?mq=Fool%27s+Overture+Supertramp&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Fool's Overture Supertramp
+https://www.mldb.org/search?mq=Yellow+Coldplay&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Yellow Coldplay
+https://www.mldb.org/search?mq=God+Only+Knows+The+Beach+Boys&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+God Only Knows The Beach Boys
+https://www.mldb.org/search?mq=Creep+Radiohead&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Creep Radiohead
+https://www.mldb.org/search?mq=Another+Love+Tom+Odell&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Another Love Tom Odell
+Another Love Tom Odell NOT FOUND
+https://www.mldb.org/search?mq=Back+To+Black+Amy+Winehouse&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Back To Black Amy Winehouse
+https://www.mldb.org/search?mq=Het+Dorp+Wim+Sonneveld&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Het Dorp Wim Sonneveld
+Het Dorp Wim Sonneveld NOT FOUND
+https://www.mldb.org/search?mq=Enter+Sandman+Metallica&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Enter Sandman Metallica
+https://www.mldb.org/search?mq=School+Supertramp&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+School Supertramp
+https://www.mldb.org/search?mq=Hurt+Johnny+Cash&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Hurt Johnny Cash
+https://www.mldb.org/search?mq=Door+De+Wind+Miss+Montreal&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Door De Wind Miss Montreal
+Door De Wind Miss Montreal NOT FOUND
+https://www.mldb.org/search?mq=Sweet+Child+O%27+Mine++Guns+N%27+Roses&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Sweet Child O' Mine  Guns N' Roses
+https://www.mldb.org/search?mq=Papa+Stef+Bos&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Papa Stef Bos
+https://www.mldb.org/search?mq=Sunday+Bloody+Sunday+U2&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Sunday Bloody Sunday U2
+https://www.mldb.org/search?mq=Somebody+To+Love+%28Live%29+George+Michael+%26+Queen&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Somebody To Love (Live) George Michael & Queen
+Somebody To Love (Live) George Michael & Queen NOT FOUND
+https://www.mldb.org/search?mq=Here+Comes+The+Sun+The+Beatles&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Here Comes The Sun The Beatles
+https://www.mldb.org/search?mq=Clocks+Coldplay&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Clocks Coldplay
+https://www.mldb.org/search?mq=Who+Wants+To+Live+Forever+Queen&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Who Wants To Live Forever Queen
+https://www.mldb.org/search?mq=Iron+Sky++Paolo+Nutini&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Iron Sky  Paolo Nutini
+Iron Sky  Paolo Nutini NOT FOUND
+https://www.mldb.org/search?mq=Angels+Robbie+Williams&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Angels Robbie Williams
+https://www.mldb.org/search?mq=Lola+Montez+Volbeat&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Lola Montez Volbeat
+Lola Montez Volbeat NOT FOUND
+https://www.mldb.org/search?mq=The+Scientist++Coldplay&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+The Scientist  Coldplay
+https://www.mldb.org/search?mq=Alive+Pearl+Jam&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Alive Pearl Jam
+https://www.mldb.org/search?mq=The+Show+Must+Go+On+Queen&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+The Show Must Go On Queen
+https://www.mldb.org/search?mq=Private+Investigations++Dire+Straits&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Private Investigations  Dire Straits
+https://www.mldb.org/search?mq=Old+And+Wise+The+Alan+Parsons+Project&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Old And Wise The Alan Parsons Project
+https://www.mldb.org/search?mq=Jolene+Dolly+Parton&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Jolene Dolly Parton
+https://www.mldb.org/search?mq=Het+Regent+Zonnestralen+Acda+en+De+Munnik&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Het Regent Zonnestralen Acda en De Munnik
+Het Regent Zonnestralen Acda en De Munnik NOT FOUND
+https://www.mldb.org/search?mq=Uprising+Muse&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Uprising Muse
+Uprising Muse NOT FOUND
+https://www.mldb.org/search?mq=Brabant+Guus+Meeuwis&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Brabant Guus Meeuwis
+Brabant Guus Meeuwis NOT FOUND
+https://www.mldb.org/search?mq=Mr.+Blue+Sky+Electric+Light+Orchestra&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Mr. Blue Sky Electric Light Orchestra
+https://www.mldb.org/search?mq=Don%27t+Stop+Believin%27+Journey&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Don't Stop Believin' Journey
+https://www.mldb.org/search?mq=Enjoy+The+Silence+Depeche+Mode&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Enjoy The Silence Depeche Mode
+https://www.mldb.org/search?mq=Zombie+The+Cranberries&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Zombie The Cranberries
+Zombie The Cranberries NOT FOUND
+https://www.mldb.org/search?mq=One+U2&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+One U2
+https://www.mldb.org/search?mq=Angie+The+Rolling+Stones&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Angie The Rolling Stones
+https://www.mldb.org/search?mq=Blackbird+The+Beatles&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Blackbird The Beatles
+https://www.mldb.org/search?mq=Tonight+Son+Mieux&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Tonight Son Mieux
+Tonight Son Mieux NOT FOUND
+https://www.mldb.org/search?mq=A+Sky+Full+Of+Stars+Coldplay+%26+Avicii&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+A Sky Full Of Stars Coldplay & Avicii
+A Sky Full Of Stars Coldplay & Avicii NOT FOUND
+https://www.mldb.org/search?mq=Bridge+Over+Troubled+Water+Simon+%26+Garfunkel&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Bridge Over Troubled Water Simon & Garfunkel
+https://www.mldb.org/search?mq=Dreams+Fleetwood+Mac&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Dreams Fleetwood Mac
+https://www.mldb.org/search?mq=Mr.+Brightside+The+Killers&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Mr. Brightside The Killers
+https://www.mldb.org/search?mq=Money+For+Nothing++Dire+Straits&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Money For Nothing  Dire Straits
+https://www.mldb.org/search?mq=Pastorale+Liesbeth+List+%26+Ramses+Shaffy&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Pastorale Liesbeth List & Ramses Shaffy
+Pastorale Liesbeth List & Ramses Shaffy NOT FOUND
+https://www.mldb.org/search?mq=Another+Brick+In+The+Wall+Pink+Floyd&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Another Brick In The Wall Pink Floyd
+https://www.mldb.org/search?mq=Belfast+Child+Simple+Minds&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Belfast Child Simple Minds
+https://www.mldb.org/search?mq=Where+The+Streets+Have+No+Name++U2&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Where The Streets Have No Name  U2
+https://www.mldb.org/search?mq=Paint+It+Black+The+Rolling+Stones&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Paint It Black The Rolling Stones
+Paint It Black The Rolling Stones NOT FOUND
+https://www.mldb.org/search?mq=Sorry+Kensington&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Sorry Kensington
+Sorry Kensington NOT FOUND
+https://www.mldb.org/search?mq=Highway+To+Hell+AC%2FDC&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Highway To Hell AC/DC
+Highway To Hell AC/DC NOT FOUND
+https://www.mldb.org/search?mq=Have+You+Ever+Seen+The+Rain+Creedence+Clearwater+Revival&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Have You Ever Seen The Rain Creedence Clearwater Revival
+https://www.mldb.org/search?mq=Bitter+Sweet+Symphony++The+Verve&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Bitter Sweet Symphony  The Verve
+Bitter Sweet Symphony  The Verve NOT FOUND
+https://www.mldb.org/search?mq=When+The+Lady+Smiles++Golden+Earring&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+When The Lady Smiles  Golden Earring
+https://www.mldb.org/search?mq=Phantom+Of+The+Opera+Floor+Jansen+%26+Henk+Poort&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Phantom Of The Opera Floor Jansen & Henk Poort
+Phantom Of The Opera Floor Jansen & Henk Poort NOT FOUND
+https://www.mldb.org/search?mq=Suspicious+Minds+Elvis+Presley&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Suspicious Minds Elvis Presley
+https://www.mldb.org/search?mq=Knights+Of+Cydonia++Muse&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Knights Of Cydonia  Muse
+https://www.mldb.org/search?mq=Chasing+Cars+Snow+Patrol&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Chasing Cars Snow Patrol
+https://www.mldb.org/search?mq=Iris+The+Goo+Goo+Dolls&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Iris The Goo Goo Dolls
+https://www.mldb.org/search?mq=Under+The+Bridge+Red+Hot+Chili+Peppers&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Under The Bridge Red Hot Chili Peppers
+https://www.mldb.org/search?mq=Sympathy+For+The+Devil++The+Rolling+Stones&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Sympathy For The Devil  The Rolling Stones
+https://www.mldb.org/search?mq=Deutschland+Rammstein&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Deutschland Rammstein
+Deutschland Rammstein NOT FOUND
+https://www.mldb.org/search?mq=Sonne+Rammstein&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Sonne Rammstein
+https://www.mldb.org/search?mq=A+Whiter+Shade+Of+Pale+Procol+Harum&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+A Whiter Shade Of Pale Procol Harum
+A Whiter Shade Of Pale Procol Harum NOT FOUND
+https://www.mldb.org/search?mq=Careless+Whisper+George+Michael&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Careless Whisper George Michael
+https://www.mldb.org/search?mq=Under+Pressure+Queen+%26+David+Bowie&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Under Pressure Queen & David Bowie
+https://www.mldb.org/search?mq=Wuthering+Heights+Kate+Bush&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Wuthering Heights Kate Bush
+https://www.mldb.org/search?mq=Riders+On+The+Storm++The+Doors&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Riders On The Storm  The Doors
+https://www.mldb.org/search?mq=Whole+Lotta+Rosie+AC%2FDC&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Whole Lotta Rosie AC/DC
+Whole Lotta Rosie AC/DC NOT FOUND
+https://www.mldb.org/search?mq=Du+Hast+Rammstein&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Du Hast Rammstein
+https://www.mldb.org/search?mq=Don%27t+Look+Back+In+Anger+Oasis&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Don't Look Back In Anger Oasis
+https://www.mldb.org/search?mq=Somewhere+Only+We+Know+Keane&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Somewhere Only We Know Keane
+https://www.mldb.org/search?mq=Paranoid+Black+Sabbath&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Paranoid Black Sabbath
+https://www.mldb.org/search?mq=Gimme+Shelter+The+Rolling+Stones&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Gimme Shelter The Rolling Stones
+Gimme Shelter The Rolling Stones NOT FOUND
+https://www.mldb.org/search?mq=Tennessee+Whiskey+Chris+Stapleton&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Tennessee Whiskey Chris Stapleton
+Tennessee Whiskey Chris Stapleton NOT FOUND
+https://www.mldb.org/search?mq=Sign+Of+The+Times+Harry+Styles&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Sign Of The Times Harry Styles
+Sign Of The Times Harry Styles NOT FOUND
+https://www.mldb.org/search?mq=Losing+My+Religion+R.E.M.&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Losing My Religion R.E.M.
+https://www.mldb.org/search?mq=Forever+Young+Alphaville&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Forever Young Alphaville
+https://www.mldb.org/search?mq=I+Still+Haven%27t+Found+What+I%27m+Looking+For+U2&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+I Still Haven't Found What I'm Looking For U2
+https://www.mldb.org/search?mq=Into+My+Arms+Nick+Cave+%26+The+Bad+Seeds&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Into My Arms Nick Cave & The Bad Seeds
+https://www.mldb.org/search?mq=With+Or+Without+You+U2&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+With Or Without You U2
+https://www.mldb.org/search?mq=Yesterday+The+Beatles&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Yesterday The Beatles
+https://www.mldb.org/search?mq=Multicolor+Son+Mieux&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Multicolor Son Mieux
+Multicolor Son Mieux NOT FOUND
+https://www.mldb.org/search?mq=Fields+Of+Gold+Sting&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Fields Of Gold Sting
+https://www.mldb.org/search?mq=Hey+Jude+The+Beatles&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Hey Jude The Beatles
+https://www.mldb.org/search?mq=Your+Song+Elton+John&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Your Song Elton John
+https://www.mldb.org/search?mq=Let+It+Be+The+Beatles&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Let It Be The Beatles
+https://www.mldb.org/search?mq=Stil+In+Mij+Van+Dik+Hout&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Stil In Mij Van Dik Hout
+Stil In Mij Van Dik Hout NOT FOUND
+https://www.mldb.org/search?mq=Troy+Sin%C3%A9ad+O%27Connor&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Troy Sinéad O'Connor
+https://www.mldb.org/search?mq=Europapa+Joost&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Europapa Joost
+Europapa Joost NOT FOUND
+https://www.mldb.org/search?mq=Fortunate+Son+Creedence+Clearwater+Revival&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Fortunate Son Creedence Clearwater Revival
+https://www.mldb.org/search?mq=The+Pretender+Foo+Fighters&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+The Pretender Foo Fighters
+https://www.mldb.org/search?mq=Sterrenstof+De+Jeugd+Van+Tegenwoordig&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Sterrenstof De Jeugd Van Tegenwoordig
+Sterrenstof De Jeugd Van Tegenwoordig NOT FOUND
+https://www.mldb.org/search?mq=The+Winner+Takes+It+All+ABBA&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+The Winner Takes It All ABBA
+https://www.mldb.org/search?mq=Billie+Jean+Michael+Jackson&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Billie Jean Michael Jackson
+https://www.mldb.org/search?mq=Mag+Ik+Dan+Bij+Jou+Claudia+de+Breij&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Mag Ik Dan Bij Jou Claudia de Breij
+Mag Ik Dan Bij Jou Claudia de Breij NOT FOUND
+https://www.mldb.org/search?mq=Dancing+In+The+Dark+Bruce+Springsteen&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Dancing In The Dark Bruce Springsteen
+https://www.mldb.org/search?mq=The+House+Of+The+Rising+Sun+The+Animals&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+The House Of The Rising Sun The Animals
+https://www.mldb.org/search?mq=Dream+On+Aerosmith&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Dream On Aerosmith
+https://www.mldb.org/search?mq=Running+Up+That+Hill++Kate+Bush&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Running Up That Hill  Kate Bush
+https://www.mldb.org/search?mq=Streets+Of+Philadelphia+Bruce+Springsteen&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Streets Of Philadelphia Bruce Springsteen
+https://www.mldb.org/search?mq=Voila+Barbara+Pravi&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Voila Barbara Pravi
+https://www.mldb.org/search?mq=Gotta+Catch+%27Em+All+%28Pokemon+Theme+Song%29+Jason+Paige&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Gotta Catch 'Em All (Pokemon Theme Song) Jason Paige
+Gotta Catch 'Em All (Pokemon Theme Song) Jason Paige NOT FOUND
+https://www.mldb.org/search?mq=Chop+Suey%21+System+Of+A+Down&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Chop Suey! System Of A Down
+https://www.mldb.org/search?mq=Gimme+Gimme+Gimme+ABBA&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Gimme Gimme Gimme ABBA
+https://www.mldb.org/search?mq=Nothing+Compares+2+U+Sin%C3%A9ad+O%27Connor&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Nothing Compares 2 U Sinéad O'Connor
+https://www.mldb.org/search?mq=Earth+Song++Michael+Jackson&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Earth Song  Michael Jackson
+https://www.mldb.org/search?mq=Fast+Car+Tracy+Chapman&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Fast Car Tracy Chapman
+https://www.mldb.org/search?mq=Summer+Of+%2769+Bryan+Adams&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Summer Of '69 Bryan Adams
+https://www.mldb.org/search?mq=Space+Oddity++David+Bowie&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Space Oddity  David Bowie
+https://www.mldb.org/search?mq=Dansen+Op+De+Vulkaan+De+Dijk&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Dansen Op De Vulkaan De Dijk
+Dansen Op De Vulkaan De Dijk NOT FOUND
+https://www.mldb.org/search?mq=Fear+Of+The+Dark+%28Live%29+Iron+Maiden&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Fear Of The Dark (Live) Iron Maiden
+Fear Of The Dark (Live) Iron Maiden NOT FOUND
+https://www.mldb.org/search?mq=Wonderwall+Oasis&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Wonderwall Oasis
+https://www.mldb.org/search?mq=%28Sittin%27+On%29+The+Dock+Of+The+Bay+Otis+Redding&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+(Sittin' On) The Dock Of The Bay Otis Redding
+https://www.mldb.org/search?mq=Nights+In+White+Satin+The+Moody+Blues&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Nights In White Satin The Moody Blues
+https://www.mldb.org/search?mq=Zoutelande+BL%C3%98F+ft.+Geike&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Zoutelande BLØF ft. Geike
+Zoutelande BLØF ft. Geike NOT FOUND
+https://www.mldb.org/search?mq=Tears+In+Heaven+Eric+Clapton&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Tears In Heaven Eric Clapton
+https://www.mldb.org/search?mq=Kleine+Jongen+Andr%C3%A9+Hazes&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Kleine Jongen André Hazes
+Kleine Jongen André Hazes NOT FOUND
+https://www.mldb.org/search?mq=Nobody%27s+Wife+Anouk&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Nobody's Wife Anouk
+https://www.mldb.org/search?mq=Insomnia++Faithless&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Insomnia  Faithless
+https://www.mldb.org/search?mq=Jeanny+Falco&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Jeanny Falco
+Jeanny Falco NOT FOUND
+https://www.mldb.org/search?mq=Come+As+You+Are+Nirvana&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Come As You Are Nirvana
+https://www.mldb.org/search?mq=Hallelujah+Leonard+Cohen&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Hallelujah Leonard Cohen
+https://www.mldb.org/search?mq=Goodnight+Saigon+Billy+Joel&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Goodnight Saigon Billy Joel
+https://www.mldb.org/search?mq=Proud+Mary+Ike+%26+Tina+Turner&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Proud Mary Ike & Tina Turner
+Proud Mary Ike & Tina Turner NOT FOUND
+https://www.mldb.org/search?mq=Someone+Like+You+Adele&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Someone Like You Adele
+https://www.mldb.org/search?mq=Fragile+Sting&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Fragile Sting
+https://www.mldb.org/search?mq=Islands+In+The+Stream+Kenny+Rogers+%26+Dolly+Parton&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Islands In The Stream Kenny Rogers & Dolly Parton
+Islands In The Stream Kenny Rogers & Dolly Parton NOT FOUND
+https://www.mldb.org/search?mq=Numb+Linkin+Park&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Numb Linkin Park
+https://www.mldb.org/search?mq=Echoes+Pink+Floyd&btnI=I%27m+Feeling+Lucky&si=0&mm=0&ob=1
+Traceback (most recent call last):
+  File "/Users/bas/Code/Python/aivd/2024/q8.py", line 53, in <module>
+    driver.get(url)
+  File "/Users/bas/Code/Python/aivd/.venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 393, in get
+    self.execute(Command.GET, {"url": url})
+  File "/Users/bas/Code/Python/aivd/.venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 382, in execute
+    response = self.command_executor.execute(driver_command, params)
+  File "/Users/bas/Code/Python/aivd/.venv/lib/python3.10/site-packages/selenium/webdriver/remote/remote_connection.py", line 404, in execute
+    return self._request(command_info[0], url, body=data)
+  File "/Users/bas/Code/Python/aivd/.venv/lib/python3.10/site-packages/selenium/webdriver/remote/remote_connection.py", line 428, in _request
+    response = self._conn.request(method, url, body=body, headers=headers, timeout=self._client_config.timeout)
+  File "/Users/bas/Code/Python/aivd/.venv/lib/python3.10/site-packages/urllib3/_request_methods.py", line 143, in request
+    return self.request_encode_body(
+  File "/Users/bas/Code/Python/aivd/.venv/lib/python3.10/site-packages/urllib3/_request_methods.py", line 278, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+  File "/Users/bas/Code/Python/aivd/.venv/lib/python3.10/site-packages/urllib3/poolmanager.py", line 443, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+  File "/Users/bas/Code/Python/aivd/.venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/Users/bas/Code/Python/aivd/.venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/Users/bas/Code/Python/aivd/.venv/lib/python3.10/site-packages/urllib3/connection.py", line 516, in getresponse
+    httplib_response = super().getresponse()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1374, in getresponse
+    response.begin()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+KeyboardInterrupt
+
+Process finished with exit code 130 (interrupted by signal 2:SIGINT)
